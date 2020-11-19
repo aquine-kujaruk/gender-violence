@@ -1,24 +1,20 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import VerticalSlider from './../components/VerticalSlider';
 import {Grid} from '@material-ui/core';
 import Video from './../components/Video';
-import FooterHome from '../components/footers/FooterHome';
-import Flow from './Flow';
-
-const useStyle = makeStyles((theme) => ({}));
+import FooterHome from '../components/FooterHome';
+import FlowMain from './FlowMain';
 
 const Home = () => {
-	const classes = useStyle();
 	return (
-		<VerticalSlider>
+		<VerticalSlider blockedUp={[1]}>
 			<Grid container>
 				<Grid item>
 					<Video />
 					<FooterHome />
 				</Grid>
 			</Grid>
-			<Flow />
+			<FlowMain />
 		</VerticalSlider>
 	);
 };

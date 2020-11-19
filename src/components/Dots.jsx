@@ -4,7 +4,8 @@ import {Box, makeStyles} from '@material-ui/core';
 const useStyle = makeStyles((theme) => ({
 	dot: {
 		width: 8,
-		height: 8
+		height: 8,
+		borderRadius: 2
 	}
 }));
 

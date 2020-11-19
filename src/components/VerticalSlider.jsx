@@ -1,44 +1,34 @@
 import React, {useState} from 'react';
 import ReactPageScroller from 'react-page-scroller';
-import {Button, makeStyles} from '@material-ui/core';
-
-const useStyle = makeStyles((theme) => ({
-	root: {
-		height: '100%',
-		width: '100%',
-		display: 'flex'
-	}
-}));
 
 const VerticalSlider = (props) => {
 	const {children} = props;
-	const classes = useStyle();
+	const blockedUp = props.blockedUp || [];
+	const blockedDown = props.blockedDown || [];
 
 	const [currentPage, setCurrentPage] = useState();
+	const [blockScrollUp, setBlockScrollUp] = useState(false);
+	const [blockScrollDown, setBlockScrollDown] = useState(false);
 
 	const handlePageChange = (number) => {
 		setCurrentPage(number);
+
+		if (blockedUp.includes(number)) setBlockScrollUp(true);
+		else setBlockScrollUp(false);
+
+		if (blockedDown.includes(number)) setBlockScrollDown(true);
+		else setBlockScrollDown(false);
 	};
 
 	return (
 		<div>
-			<ReactPageScroller pageOnChange={handlePageChange} customPageNumber={currentPage}>
+			<ReactPageScroller
+				blockScrollUp={blockScrollUp}
+				blockScrollDown={blockScrollDown}
+				pageOnChange={handlePageChange}
+				customPageNumber={currentPage}
+			>
 				{children}
-				{/* <div className={classes.root} style={{backgroundColor: 'gray'}}>
-					<h2 style={{margin: 'auto'}}>First Component</h2>
-				</div>
-				<div className={classes.root} style={{backgroundColor: 'red'}}>
-					<h2 style={{margin: 'auto'}}>Second Component</h2>
-				</div>
-				<div className={classes.root} style={{backgroundColor: 'blue'}}>
-					<h2 style={{margin: 'auto'}}>Third Component</h2>
-				</div>
-				<div className={classes.root} style={{backgroundColor: 'yellow'}}>
-					<h2 style={{margin: 'auto'}}>Fourth Component</h2>
-				</div>
-				<div className={classes.root} style={{backgroundColor: 'purple'}}>
-					<h2 style={{margin: 'auto'}}>Fifth Component</h2>
-				</div> */}
 			</ReactPageScroller>
 		</div>
 	);

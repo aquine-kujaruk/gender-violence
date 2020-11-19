@@ -10,34 +10,17 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.component {
-	height: 100%;
-	width: 100%;
-	display: flex;
+.page-slide-enter {
+	transform: translateX(100%);
 }
-
-.component.first-component {
-	background-color: gray;
-	position: relative;
+.page-slide-enter.page-slide-enter-active {
+	transform: translateX(0);
+	transition: transform 300ms ease;
 }
-
-.component.second-component {
-	background-color: red;
+.page-slide-exit {
+	transform: translateX(0);
 }
-
-.component.third-component {
-	background-color: blue;
-}
-
-.component.fourth-component {
-	background-color: yellow;
-}
-
-.component.fifth-component {
-	background-color: purple;
-}
-
-svg {
-	height: 30px;
-	cursor: pointer;
+.page-slide-exit.page-slide-exit-active {
+	transform: translateX(-100%);
+	transition: transform 300ms ease;
 }
