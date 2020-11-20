@@ -3,6 +3,9 @@ import {Box, makeStyles, Typography} from '@material-ui/core';
 import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
 import ContainerRounded from './../components/ContainerRounded';
+import headerImage from '../assets/que-hacer.png';
+import slide1Image from '../assets/2-1.jpg';
+import slide2Image from '../assets/1-1.jpg';
 
 const useStyle = makeStyles((theme) => ({
 	content: {
@@ -33,11 +36,9 @@ const Flow = () => {
 
 	const [index, setIndex] = useState(0);
 
-	const header = (
-		<img src="https://i.ibb.co/YjRwLBJ/que-hacer.png" alt="" className={classes.textImage} />
-	);
+	const header = <img src={headerImage} alt="" className={classes.textImage} />;
 
-	const urls = ['https://i.ibb.co/M12mMKc/1.webp', 'https://i.ibb.co/rt0pdtt/8.jpg'];
+	const urls = [slide1Image, slide2Image];
 
 	return (
 		<ContainerRounded

@@ -3,6 +3,7 @@ import {AppBar, IconButton, makeStyles, Toolbar, Button} from '@material-ui/core
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import ToggleIcon from 'material-ui-toggle-icon';
+import logo from '../assets/logo.png';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -43,12 +44,7 @@ const Navbar = ({open, setOpen}) => {
 					</IconButton>
 					<div className={classes.separator} />
 					<Button color="inherit">
-						<img
-							className={classes.logo}
-							src="https://i.ibb.co/FBH5xdc/logo.png"
-							alt="6"
-							border="0"
-						/>
+						<img className={classes.logo} src={logo} alt="6" border="0" />
 					</Button>
 				</Toolbar>
 			</AppBar>

@@ -3,7 +3,7 @@ import {Box, Button, Divider, Grid, makeStyles, Typography} from '@material-ui/c
 import * as parse from 'html-react-parser';
 import ContainerRounded from '../components/ContainerRounded';
 import VerticalSlider from '../components/VerticalSlider';
-import longArrow from '../images/long-arrow.png';
+import longArrow from '../assets/long-arrow.png';
 import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
 

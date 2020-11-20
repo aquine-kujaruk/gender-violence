@@ -33,7 +33,7 @@ const VictimType = () => {
 					</Typography>
 				</Grid>
 				<Grid xs={12} item>
-					<Grid className={classes.root} container direction="row" justify="space-between">
+					<Grid className={classes.root} container direction="row" justify="space-evenly">
 						{['Si', 'No', 'No lo sé'].map((item, index) => (
 							<Grid key={index} item xs={12}>
 								<Box py="8px" display="flex" justifyContent="center">

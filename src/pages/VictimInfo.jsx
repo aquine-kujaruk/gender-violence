@@ -3,16 +3,17 @@ import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import ButtonCustom from '../components/ButtonCustom';
 import Container from './../components/Container';
-import longArrow from '../images/long-arrow-white.png';
+import longArrow from '../assets/long-arrow-white.png';
 import Dots from './../components/Dots';
 import CustomSlide from './../components/CustomSlide';
+import imageHero from '../assets/3-1.jpg';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
 		height: '100%'
 	},
 	hero: {
-		background: 'url("https://i.ibb.co/dMnxTSN/3-1.jpg")',
+		background: `url(${imageHero})`,
 		backgroundSize: 'cover',
 		backgroundRepeat: 'no-repeat'
 	},
