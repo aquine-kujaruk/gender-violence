@@ -23,7 +23,7 @@ const ButtonCustom = (props) => {
 	const {children, type} = props;
 	const classes = useStyle();
 	return (
-		<Button {...props} variant="container" className={`${classes.button} ${type}`}>
+		<Button {...props} variant="contained" className={`${classes.button} ${type}`}>
 			{children}
 		</Button>
 	);

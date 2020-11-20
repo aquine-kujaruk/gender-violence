@@ -1,30 +1,25 @@
 import React, {useState} from 'react';
-import {Box, makeStyles, Typography} from '@material-ui/core';
+import {Box, Divider, Grid, makeStyles, Typography} from '@material-ui/core';
 import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
 import ContainerRounded from './../components/ContainerRounded';
+import VerticalSlider from './../components/VerticalSlider';
+import Video from './../components/Video';
+import FooterHome from './../components/FooterHome';
 
 const useStyle = makeStyles((theme) => ({
-	content: {
-		position: 'absolute',
-		bottom: 48,
-		left: 24
+	header: {
+		width: '100%',
+		padding: '0 16px'
 	},
-	textImage: {
-		width: 300,
-		position: 'relative',
-		top: 71,
-		height: 71
-	},
-	title: {
-		color: 'white',
+	headerText: {
+		color: theme.palette.primary.main,
 		fontWeight: 'bold',
-		lineHeight: 1,
-		paddingBottom: 4,
-		textShadow: '1px 1px 2px #00000075'
+		textAlign: 'center',
+		padding: '20px 0'
 	},
-	buttonText: {
-		fontWeight: '100'
+	divider: {
+		backgroundColor: theme.palette.primary.main
 	}
 }));
 
@@ -33,26 +28,46 @@ const VictimInfo = () => {
 
 	const [index, setIndex] = useState(0);
 
-	const urls = ['https://i.ibb.co/M12mMKc/1.webp', 'https://i.ibb.co/rt0pdtt/8.jpg'];
-
 	return (
-		<ContainerRounded scrollable index={index} setIndex={setIndex}>
-			<Box height={1}>
-				<img src={urls[index]} width="100%" height="100%" alt="flow" style={{objectFit: 'cover'}} />
-			</Box>
-			<Box zIndex="tooltip" className={classes.content}>
-				<Typography variant="h4" className={classes.title}>
-					Cuando
-					<br />
-					te ocurre a ti
-				</Typography>
-				<ButtonCustom component={Link} to={'/victima'} type="rounded">
-					<Typography className={classes.buttonText} variant="subtitle1">
-						Iniciar Formación
-					</Typography>
-				</ButtonCustom>
-			</Box>
-		</ContainerRounded>
+		<VerticalSlider blockedDown={[0]}>
+			<ContainerRounded scrollable index={index} setIndex={setIndex}>
+				<Grid
+					className={classes.root}
+					container
+					direction="column"
+					justify="space-between"
+					alignItems="center"
+				>
+					<Grid item className={classes.header}>
+						<Typography className={classes.headerText} variant="h4">
+							¡No estas sola!
+						</Typography>
+						<Divider className={classes.divider} />
+					</Grid>
+					<Grid item>
+						<Box p="16px">
+							<Typography variant="body2">
+								65 de cada 100 mujeres en el Ecuador, han experimentado por lo menos un hecho de
+								algún tipo de violencia en alguno de los distintos ámbitos a lo largo de su vida.
+								<br /> <br />
+								A pesar de ello, muchas de nosotras no lo denunciamos por miedo o verguenza.
+								<br /> <br />
+								Incluso terminamos por culparnos a nosotras mismas cuando, en realidad, la culpa
+								nunca es nuestra.
+								<br /> <br />
+								No queremos volver a sentirnos así nunca. No vamos a mirar hacia otro lado nunca
+								más. Vamos a sentirnos seguras y tener el control.
+								<br /> <br />
+								Independientemente de cómo decidas enfrentarte a ello, debes saber que no es tu
+								responsabilidad encontrar la reacción perfecta; es su responsabilidad no ser
+								violento.
+							</Typography>
+						</Box>
+					</Grid>
+				</Grid>
+			</ContainerRounded>
+			<></>
+		</VerticalSlider>
 	);
 };
 
