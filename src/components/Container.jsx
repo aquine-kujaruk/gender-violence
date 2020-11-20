@@ -15,7 +15,8 @@ const useStyle = makeStyles((theme) => ({
 		overflow: 'hidden',
 		backgroundColor: 'transparent',
 		'&.full-height': {
-			height: `calc(100vh - ${theme.mixins.toolbar.minHeight + 8}px)`
+			height: `calc(100vh - ${theme.mixins.toolbar.minHeight + 8}px)`,
+			borderRadius: 0
 		}
 	},
 	footer: {

@@ -16,7 +16,7 @@ const useStyle = makeStyles((theme) => ({
 const Victim = () => {
 	const classes = useStyle();
 	return (
-		<Container uri="/victima/info" textButton="Estoy lista" backgroundColor="black">
+		<Container uri="/victima/introduccion" textButton="Estoy lista" backgroundColor="black">
 			<Grid
 				className={classes.root}
 				container

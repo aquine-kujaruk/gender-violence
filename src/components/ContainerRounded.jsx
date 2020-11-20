@@ -17,7 +17,7 @@ const useStyle = makeStyles((theme) => ({
 		height: `calc(100vh - ${theme.mixins.toolbar.minHeight + 8 + 48}px)`,
 		margin: '24px 0',
 		borderRadius: 24,
-		overflow: 'hidden',
+		overflow: 'scroll',
 		backgroundColor: 'transparent',
 		boxShadow: theme.shadows[12],
 		'&.scrollable': {

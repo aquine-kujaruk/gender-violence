@@ -1,164 +1,175 @@
-import React, {useState} from 'react';
-import {Box, Button, Divider, Grid, makeStyles, Typography} from '@material-ui/core';
-import * as parse from 'html-react-parser';
-import ContainerRounded from './../components/ContainerRounded';
-import VerticalSlider from './../components/VerticalSlider';
-import longArrow from '../images/long-arrow.png';
+import React, {useRef, useState} from 'react';
+import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
+import {Link} from 'react-router-dom';
 import ButtonCustom from '../components/ButtonCustom';
+import Container from './../components/Container';
+import longArrow from '../images/long-arrow-white.png';
+import Dots from './../components/Dots';
+import CustomSlide from './../components/CustomSlide';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
 		height: '100%'
 	},
-	header: {
-		width: '100%',
-		padding: '0 16px'
+	hero: {
+		background: 'url("https://i.ibb.co/dMnxTSN/3-1.jpg")',
+		backgroundSize: 'cover',
+		backgroundRepeat: 'no-repeat'
 	},
-	headerText: {
-		color: theme.palette.primary.main,
+	title: {
 		fontWeight: 'bold',
-		textAlign: 'center',
-		padding: '20px 0'
+		color: '#ff5f2b',
+		padding: 4,
+		'&.left': {
+			fontWeight: '100'
+		}
 	},
-	divider: {
-		backgroundColor: theme.palette.primary.main
+	titleContainer: {
+		backgroundColor: '#ffffffbb'
 	},
-	imageIcon: {
-		height: 24,
-		paddingBottom: 16
+	buttonImageIcon: {
+		width: '2.5rem',
+		height: '1.5rem',
+		transform: 'scaleY(0.6)',
+		paddingLeft: 4
+	},
+	textBody: {
+		color: 'white',
+		padding: '8px 16px',
+		fontSize: '0.85rem'
 	}
 }));
 
+const data = [
+	{
+		titleLeft: 'Violencia',
+		titleRight: 'Psicológica',
+		text:
+			'Conducta dirigida a causar daño emocional, disminuir la autoestima, provocar descrédito, menospreciar la dignidad personal, degradar la identidad cultural.'
+	},
+	{
+		titleLeft: 'Violencia',
+		titleRight: 'Física',
+		text:
+			'Acto que produce daño o sufrimiento físico, dolor o muerte, así como, castigos corporales, que provoca o no lesiones, ya sean internas, externas o ambas.'
+	},
+	{
+		titleLeft: 'Violencia',
+		titleRight: 'Sexual',
+		text:
+			'Acción que implica vulneración del derecho a la integridad y decidir voluntariamente sobre su vida sexual y reproductiva, a través de amenazas, represión, uso de la fuerza e intimidación.'
+	},
+	{
+		titleLeft: 'Violencia',
+		titleRight: 'Económica',
+		text:
+			'Acción que ocasiona una restricción en los recursos económicos y patrimoniales de las mujeres, incluidos aquellos de la sociedad de bienes conyugal y de uniones de hecho.'
+	},
+	{
+		titleLeft: 'Violencia',
+		titleRight: 'Gineco-Obstétrica',
+		text:
+			'Toda acción u omisión que limite el derecho de las mujeres embarazadas o no, a recibir servicios de salud gineco-obstétricos.'
+	}
+];
+
 const VictimInfo = () => {
 	const classes = useStyle();
+	const [slider1Ref, slider2Ref] = [useRef(), useRef()];
 
 	const [index, setIndex] = useState(0);
 
-	const data = [
-		{
-			title: '¡No estas sola!',
-			body: `
-            65 de cada 100 mujeres en el Ecuador, han experimentado por lo menos un hecho de
-            algún tipo de violencia en alguno de los distintos ámbitos a lo largo de su vida.
-            <br /> <br />
-            A pesar de ello, muchas de nosotras no lo denunciamos por miedo o verguenza.
-            <br /> <br />
-            Incluso terminamos por culparnos a nosotras mismas cuando, en realidad, la culpa
-            nunca es nuestra.
-            <br /> <br />
-            No queremos volver a sentirnos así nunca. No vamos a mirar hacia otro lado nunca
-            más. Vamos a sentirnos seguras y tener el control.
-            <br /> <br />
-            Independientemente de cómo decidas enfrentarte a ello, debes saber que no es tu
-            responsabilidad encontrar la reacción perfecta; es su responsabilidad no ser
-            violento.`
-		},
-		{
-			title: 'Siempre tiene importancia',
-			body: `
-            Cada acto de violencia nos afecta más de lo que creemos: modifica nuestro comportamiento, 
-            cuestiona nuestra confianza, debilita nuestra autoestima. 
-            <br /> <br />
-            Nos hace evitar ciertos lugares, replantearnos nuestra apariencia y 
-            sentirnos inseguros cuando salimos solos. 
-            <br /> <br />
-            Sin embargo, se ha demostrado que el hecho de reaccionar de algún modo cuando esto ocurre, 
-            ya sea en ese momento o más tarde, reduce el efecto negativo.`
-		},
-		{
-			title: 'Confía siempre en tus instintos',
-			body: `
-            Escucha lo que te dice tu interior:
-            <br /> <br />
-            • ¿Te sientes a salvo como para reaccionar?
-            <br />
-            • ¿Hay gente alrededor?
-            <br />
-            • ¿Te encuentras en un lugar bien iluminado?
-            <br />
-            • ¿Hay una salida cercana?
-            <br /> <br />
-            Pase lo que pase, respira profundamente y mantén la calma, la tranquilidad y la serenidad.
-            En realidad, la reacción perfecta no existe.
-            <br /> <br />
-            Pero existen diferentes reacciones con las que puedes responder. Puesto que si decides responder, lo haces por ti.
-            <br /> <br />
-            ¿Te has visto en una situacion así?
-            <br />
-            Encuentra la manera de reaccionar aqui.
-            `
-		}
-	];
-
-	const next = () => {
-		if (index === data.length - 1) setIndex(0);
-		else setIndex(index + 1);
+	const onNext = () => {
+		slider1Ref.current.onArrowClick('right');
+		slider2Ref.current.onArrowClick('right');
 	};
 
 	return (
-		<VerticalSlider blockedDown={[0]}>
-			<ContainerRounded
-				scrollable
-				index={index}
-				setIndex={setIndex}
-				length={data.length}
-				disableLeft={index === 0}
-				disableRight={index === data.length - 1}
-			>
-				<Grid
-					className={classes.root}
-					container
-					direction="column"
-					justify="space-between"
-					alignItems="center"
-				>
-					<Grid item className={classes.header}>
-						<Typography className={classes.headerText} variant="h4">
-							{data[index].title}
-						</Typography>
-						<Divider className={classes.divider} />
-					</Grid>
-					<Grid item>
-						<Box position="relative" p="16px" style={{overflow: 'scroll'}}>
-							<Typography variant="body2">{parse(data[index].body)}</Typography>
+		<Container>
+			<Grid className={classes.root} container>
+				<Grid item xs={12}>
+					<Box height={0.65} width={1} position="relative" className={classes.hero}>
+						<Box
+							position="absolute"
+							height="4.5rem"
+							width={1}
+							bottom="0"
+							className={classes.titleContainer}
+						></Box>
+						<CustomSlide ref={slider1Ref} index={index} setIndex={setIndex} length={data.length}>
+							{index !== 4 ? (
+								<Box
+									position="absolute"
+									height="4.5rem"
+									width={1}
+									bottom="0"
+									display="flex"
+									justifyContent="center"
+									alignItems="center"
+								>
+									<Typography className={`${classes.title} left`} variant="h6">
+										{data[index].titleLeft}
+									</Typography>
+									<Typography className={classes.title} variant="h3">
+										{data[index].titleRight}
+									</Typography>
+								</Box>
+							) : (
+								<Box
+									position="absolute"
+									height="4.5rem"
+									width={1}
+									bottom="0"
+									display="flex"
+									justifyContent="center"
+									alignItems="center"
+									pl="16px"
+								>
+									<Grid container>
+										<Grid item xs={12}>
+											<Typography
+												className={`${classes.title} left`}
+												style={{padding: 0}}
+												variant="h6"
+											>
+												{data[index].titleLeft}
+											</Typography>
+										</Grid>
+										<Grid item xs={12}>
+											<Typography className={classes.title} style={{padding: 0}} variant="h4">
+												{data[index].titleRight}
+											</Typography>
+										</Grid>
+									</Grid>
+								</Box>
+							)}
+						</CustomSlide>
+					</Box>
+					<CustomSlide ref={slider2Ref} index={index} setIndex={setIndex} length={data.length}>
+						<Box height={0.25} width={1} display="flex" justifyContent="center" alignItems="center">
+							<Typography className={classes.textBody} variant="body2">
+								{data[index].text}
+							</Typography>
 						</Box>
-					</Grid>
-					<Grid item className={classes.header}>
-						{index !== data.length - 1 ? (
-							<Box display="flex" justifyContent="center">
-								<Button onClick={next}>
-									<img alt="" className={classes.imageIcon} src={longArrow} />
-								</Button>
-							</Box>
-						) : (
-							<Box mb="16px" display="flex" justifyContent="center">
-								<ButtonCustom variant="outlined" type="outlined">
-									<Box display="flex" justifyContent="center">
-										<Typography
-											style={{
-												height: '1.4rem',
-												fontWeight: 'bold',
-												fontSize: '0.9rem',
-												color: '#ff5f2b'
-											}}
-											variant="subtitle1"
-										>
-											Veamos que puedes hacer
-										</Typography>
-										<img
-											alt=""
-											style={{width: '1.8rem', transform: 'scaleY(0.6)', paddingLeft: 4}}
-											src={longArrow}
-										/>
-									</Box>
-								</ButtonCustom>
-							</Box>
-						)}
-					</Grid>
+					</CustomSlide>
+					<Box height={0.06} width={1} display="flex" justifyContent="center" alignItems="center">
+						<ButtonCustom
+							style={{borderColor: 'white'}}
+							variant="outlined"
+							type="outlined"
+							onClick={onNext}
+							/* component={Link}
+							to={'/victima/info'} */
+						>
+							<img alt="" className={classes.buttonImageIcon} src={longArrow} />
+						</ButtonCustom>
+					</Box>
+					<Box height={0.04} width={1}>
+						<Dots selected={index} length={data.length} bgColor="white" />
+					</Box>
 				</Grid>
-			</ContainerRounded>
-			<></>
-		</VerticalSlider>
+			</Grid>
+		</Container>
 	);
 };
 

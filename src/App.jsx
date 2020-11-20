@@ -6,6 +6,9 @@ import Navbar from './components/Navbar';
 import Menu from './components/Menu';
 import Home from './pages/Home';
 import Victim from './pages/Victim';
+import VictimIntroduction from './pages/VictimIntroduction';
+import VictimType from './pages/VictimType';
+import VictimInfoIntro from './pages/VictimInfoIntro';
 import VictimInfo from './pages/VictimInfo';
 
 function App() {
@@ -16,8 +19,17 @@ function App() {
 			<Menu open={isOpenMenu} setOpen={setIsOpenMenu} />
 			<Router>
 				<Switch>
+					<Route exact path="/victima/info/intro">
+						<VictimInfoIntro />
+					</Route>
 					<Route exact path="/victima/info">
 						<VictimInfo />
+					</Route>
+					<Route exact path="/victima/tipo">
+						<VictimType />
+					</Route>
+					<Route exact path="/victima/introduccion">
+						<VictimIntroduction />
 					</Route>
 					<Route exact path="/victima">
 						<Victim />
