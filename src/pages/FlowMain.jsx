@@ -47,6 +47,7 @@ const Flow = () => {
 			index={index}
 			setIndex={setIndex}
 			bgColor={index === 0 ? 'black' : 'white'}
+			length={urls.length}
 		>
 			<Box height={1}>
 				<img src={urls[index]} width="100%" height="100%" alt="flow" style={{objectFit: 'cover'}} />

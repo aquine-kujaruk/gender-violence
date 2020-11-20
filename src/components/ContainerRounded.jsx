@@ -36,16 +36,27 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const ContainerRounded = (props) => {
-	const {children, textHeader, scrollable, header, index, setIndex, bgColor} = props;
+	const {
+		children,
+		textHeader,
+		scrollable,
+		header,
+		index,
+		setIndex,
+		bgColor,
+		length,
+		disableLeft,
+		disableRight
+	} = props;
 
 	const classes = useStyle();
 	const childRef = useRef();
 
 	const onArrowLeft = () => {
-		if (scrollable) childRef.current.onArrowClick('left');
+		if (scrollable && !disableLeft) childRef.current.onArrowClick('left');
 	};
 	const onArrowRight = () => {
-		if (scrollable) childRef.current.onArrowClick('right');
+		if (scrollable && !disableRight) childRef.current.onArrowClick('right');
 	};
 
 	const handlers = useSwipeable({
@@ -72,7 +83,7 @@ const ContainerRounded = (props) => {
 				</Box>
 			</Grid>
 			<Grid item xs={1}>
-				{scrollable && (
+				{scrollable && !disableLeft && (
 					<Box height={1} display="flex" alignItems="center" justifyContent="center">
 						<IconButton color="primary" onClick={onArrowLeft}>
 							<PlayArrow className={classes.inverted} />
@@ -82,7 +93,7 @@ const ContainerRounded = (props) => {
 			</Grid>
 			{scrollable ? (
 				<Grid item xs={10} {...handlers}>
-					<CustomSlide ref={childRef} index={index} setIndex={setIndex}>
+					<CustomSlide ref={childRef} index={index} setIndex={setIndex} length={length}>
 						<Box
 							elevation={3}
 							position="relative"
@@ -108,7 +119,7 @@ const ContainerRounded = (props) => {
 			)}
 
 			<Grid item xs={1}>
-				{scrollable && (
+				{scrollable && !disableRight && (
 					<Box height={1} display="flex" alignItems="center" justifyContent="center">
 						<IconButton color="primary" onClick={onArrowRight}>
 							<PlayArrow />
@@ -119,7 +130,7 @@ const ContainerRounded = (props) => {
 			{scrollable && (
 				<Grid item>
 					<Box width="100vw" className={classes.footer}>
-						<Dots selected={index} length={2} />
+						<Dots selected={index} length={length} />
 					</Box>
 				</Grid>
 			)}

@@ -2,9 +2,7 @@ import React, {useState, forwardRef, useImperativeHandle} from 'react';
 import {Slide} from '@material-ui/core';
 
 const CustomSlide = forwardRef((props, ref) => {
-	const {children, index, setIndex} = props;
-
-	const numSlides = 2;
+	const {children, index, setIndex, length} = props;
 
 	const [slideIn, setSlideIn] = useState(true);
 	const [slideDirection, setSlideDirection] = useState('left');
@@ -12,7 +10,7 @@ const CustomSlide = forwardRef((props, ref) => {
 	useImperativeHandle(ref, () => ({
 		onArrowClick(direction) {
 			const increment = direction === 'left' ? -1 : 1;
-			const newIndex = (index + increment + numSlides) % numSlides;
+			const newIndex = (index + increment + length) % length;
 
 			const oppDirection = direction === 'left' ? 'right' : 'left';
 			setSlideDirection(direction);
