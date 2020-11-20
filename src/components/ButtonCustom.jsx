@@ -5,21 +5,28 @@ const useStyle = makeStyles((theme) => ({
 	button: {
 		background: theme.palette.primary.main,
 		color: 'white',
-		borderRadius: 8,
 		'&:hover': {
 			background: theme.palette.primary.main
+		},
+		'&.circular': {
+			borderRadius: 24,
+			textTransform: 'none',
+			padding: '4px 60px'
+		},
+		'&.rounded': {
+			borderRadius: 8
 		}
 	}
 }));
 
-const ButtonRounded = (props) => {
-	const {children} = props;
+const ButtonCustom = (props) => {
+	const {children, type} = props;
 	const classes = useStyle();
 	return (
-		<Button {...props} variant="container" className={classes.button}>
+		<Button {...props} variant="container" className={`${classes.button} ${type}`}>
 			{children}
 		</Button>
 	);
 };
 
-export default ButtonRounded;
+export default ButtonCustom;

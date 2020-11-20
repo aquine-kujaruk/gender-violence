@@ -31,7 +31,7 @@ const Navbar = ({open, setOpen}) => {
 
 	return (
 		<div className={classes.root}>
-			<AppBar position="fixed" color="inherit" elevation={1}>
+			<AppBar position="fixed" color="inherit" elevation={0}>
 				<Toolbar>
 					<IconButton edge="start" color="primary" aria-label="menu" onClick={() => setOpen(!open)}>
 						<ToggleIcon

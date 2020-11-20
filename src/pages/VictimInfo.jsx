@@ -28,26 +28,15 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
-const Flow = () => {
+const VictimInfo = () => {
 	const classes = useStyle();
 
 	const [index, setIndex] = useState(0);
 
-	const header = (
-		<img src="https://i.ibb.co/YjRwLBJ/que-hacer.png" alt="" className={classes.textImage} />
-	);
-
 	const urls = ['https://i.ibb.co/M12mMKc/1.webp', 'https://i.ibb.co/rt0pdtt/8.jpg'];
 
 	return (
-		<ContainerRounded
-			textHeader
-			scrollable
-			header={header}
-			index={index}
-			setIndex={setIndex}
-			bgColor={index === 0 ? 'black' : 'white'}
-		>
+		<ContainerRounded scrollable index={index} setIndex={setIndex}>
 			<Box height={1}>
 				<img src={urls[index]} width="100%" height="100%" alt="flow" style={{objectFit: 'cover'}} />
 			</Box>
@@ -67,4 +56,4 @@ const Flow = () => {
 	);
 };
 
-export default Flow;
+export default VictimInfo;
