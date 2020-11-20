@@ -58,7 +58,7 @@ const Flow = () => {
 					<br />
 					te ocurre a ti
 				</Typography>
-				<ButtonCustom component={Link} to={'/victima'} type="rounded">
+				<ButtonCustom variant="contained" component={Link} to={'/victima'} type="rounded">
 					<Typography className={classes.buttonText} variant="subtitle1">
 						Iniciar Formación
 					</Typography>

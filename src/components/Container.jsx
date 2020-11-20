@@ -1,6 +1,5 @@
 import React from 'react';
 import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
-import Dots from '../components/Dots';
 import ButtonCustom from './ButtonCustom';
 import {Link} from 'react-router-dom';
 
@@ -52,7 +51,7 @@ const Container = (props) => {
 						alignItems="center"
 						justifyContent="center"
 					>
-						<ButtonCustom component={Link} to={uri} type="circular">
+						<ButtonCustom variant="contained" component={Link} to={uri} type="circular">
 							<Typography className={classes.buttonText} variant="subtitle1">
 								{textButton}
 							</Typography>

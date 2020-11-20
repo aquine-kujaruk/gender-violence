@@ -4,6 +4,7 @@ import * as parse from 'html-react-parser';
 import ContainerRounded from './../components/ContainerRounded';
 import VerticalSlider from './../components/VerticalSlider';
 import longArrow from '../images/long-arrow.png';
+import ButtonCustom from '../components/ButtonCustom';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -118,7 +119,7 @@ const VictimInfo = () => {
 						<Divider className={classes.divider} />
 					</Grid>
 					<Grid item>
-						<Box p="16px">
+						<Box position="relative" p="16px" style={{overflow: 'scroll'}}>
 							<Typography variant="body2">{parse(data[index].body)}</Typography>
 						</Box>
 					</Grid>
@@ -131,7 +132,7 @@ const VictimInfo = () => {
 							</Box>
 						) : (
 							<Box mb="16px" display="flex" justifyContent="center">
-								<Button variant="outlined" style={{borderRadius: 30, borderColor: '#ff5f2b'}}>
+								<ButtonCustom variant="outlined" type="outlined">
 									<Box display="flex" justifyContent="center">
 										<Typography
 											style={{
@@ -142,7 +143,7 @@ const VictimInfo = () => {
 											}}
 											variant="subtitle1"
 										>
-											Veamos que puedes hacer{' '}
+											Veamos que puedes hacer
 										</Typography>
 										<img
 											alt=""
@@ -150,7 +151,7 @@ const VictimInfo = () => {
 											src={longArrow}
 										/>
 									</Box>
-								</Button>
+								</ButtonCustom>
 							</Box>
 						)}
 					</Grid>

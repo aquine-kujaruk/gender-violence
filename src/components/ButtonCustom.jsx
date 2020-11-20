@@ -16,14 +16,21 @@ const useStyle = makeStyles((theme) => ({
 		'&.rounded': {
 			borderRadius: 8
 		}
+	},
+	outlined: {
+		borderRadius: 30,
+		borderColor: '#ff5f2b'
 	}
 }));
 
 const ButtonCustom = (props) => {
-	const {children, type} = props;
+	const {children, variant, type} = props;
 	const classes = useStyle();
 	return (
-		<Button {...props} variant="contained" className={`${classes.button} ${type}`}>
+		<Button
+			{...props}
+			className={variant === 'outlined' ? classes.outlined : `${classes.button} ${type}`}
+		>
 			{children}
 		</Button>
 	);
