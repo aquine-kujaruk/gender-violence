@@ -3,6 +3,7 @@ import {Button, makeStyles} from '@material-ui/core';
 
 const useStyle = makeStyles((theme) => ({
 	button: {
+		maxWidth: 350,
 		background: theme.palette.primary.main,
 		color: 'white',
 		'&:hover': {
@@ -18,6 +19,7 @@ const useStyle = makeStyles((theme) => ({
 		}
 	},
 	outlined: {
+		maxWidth: 350,
 		borderRadius: 30,
 		borderColor: '#ff5f2b'
 	}

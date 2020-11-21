@@ -14,7 +14,9 @@ import VictimActionIntro from './pages/VictimActionIntro';
 import VictimAction from './pages/VictimAction';
 import {Box} from '@material-ui/core';
 import VictimToWitness from './pages/VictimToWitness';
-import MergeFlows from './pages/MergeFlows';
+import StopAbuse from './pages/StopAbuse';
+import StopAbuseIntro from './pages/StopAbuseIntro';
+import StopAbuseCases from './pages/StopAbuseCases';
 
 function App() {
 	const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -24,8 +26,14 @@ function App() {
 			<Menu open={isOpenMenu} setOpen={setIsOpenMenu} />
 			<Router>
 				<Switch>
-					<Route exact path="/detener">
-						<MergeFlows />
+					<Route exact path="/detenlo/elegir-caso">
+						<StopAbuseCases />
+					</Route>
+					<Route exact path="/detenlo/intro">
+						<StopAbuseIntro />
+					</Route>
+					<Route exact path="/detenlo">
+						<StopAbuse />
 					</Route>
 					<Route exact path="/victima/ver-testigo">
 						<VictimToWitness />

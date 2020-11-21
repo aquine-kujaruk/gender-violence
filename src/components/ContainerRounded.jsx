@@ -21,10 +21,18 @@ const useStyle = makeStyles((theme) => ({
 		backgroundColor: 'transparent',
 		boxShadow: theme.shadows[12],
 		'&.scrollable': {
-			height: `calc(100vh - ${theme.mixins.toolbar.minHeight + 8 + 30 + 48}px)`
+			height: `calc(100vh - ${theme.mixins.toolbar.minHeight + 8 + 30 + 48}px)`,
+			'&.topImage': {
+				height: `calc(100vh - ${theme.mixins.toolbar.minHeight + 8 + 30 + 24}px)`,
+				margin: '0 0 24px'
+			}
 		},
 		'&.scrollable.text-header': {
 			height: `calc(100vh - ${theme.mixins.toolbar.minHeight + 8 + 60 + 30 + 48}px)`
+		},
+		'&.topImage': {
+			height: `calc(100vh - ${theme.mixins.toolbar.minHeight + 8 + 24}px)`,
+			margin: '0 0 24px'
 		}
 	},
 	footer: {
@@ -47,7 +55,8 @@ const ContainerRounded = (props) => {
 		length,
 		disableLeft,
 		disableRight,
-		noShadow
+		noShadow,
+		topImage
 	} = props;
 
 	const classes = useStyle();
@@ -100,7 +109,7 @@ const ContainerRounded = (props) => {
 							position="relative"
 							className={`${classes.container} ${scrollable ? 'scrollable' : ''} ${
 								textHeader ? 'text-header' : ''
-							}`}
+							} ${topImage ? 'topImage' : ''}`}
 							style={noShadow ? {boxShadow: 'none'} : {}}
 						>
 							{children}
@@ -113,7 +122,7 @@ const ContainerRounded = (props) => {
 						position="relative"
 						className={`${classes.container} ${scrollable ? 'scrollable' : ''} ${
 							textHeader ? 'text-header' : ''
-						}`}
+						} ${topImage ? 'topImage' : ''}`}
 						style={noShadow ? {boxShadow: 'none'} : {}}
 					>
 						{children}

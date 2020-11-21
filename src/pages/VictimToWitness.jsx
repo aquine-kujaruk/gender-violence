@@ -48,7 +48,7 @@ const VictimToWitness = () => {
 									variant="outlined"
 									type="outlined"
 									component={Link}
-									to={'/victima/accion'}
+									to={'/detenlo'}
 								>
 									<Box display="flex" justifyContent="center">
 										<Typography className={classes.buttonText} variant="subtitle1">

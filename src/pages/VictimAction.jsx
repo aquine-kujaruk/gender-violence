@@ -126,12 +126,8 @@ const Content = (props) => {
 						/>
 					</Button>
 				) : (
-					<Button>
-						<img
-							alt=""
-							className={`${classes.buttonImageIcon} ${isLast && 'isLast'}`}
-							src={longArrow}
-						/>
+					<Button style={{height: 40}}>
+						<img alt="" className={classes.buttonImageIcon} src={longArrow} />
 					</Button>
 				)}
 			</Box>
