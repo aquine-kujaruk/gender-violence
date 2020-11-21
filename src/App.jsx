@@ -10,6 +10,9 @@ import VictimIntroduction from './pages/VictimIntroduction';
 import VictimType from './pages/VictimType';
 import VictimInfoIntro from './pages/VictimInfoIntro';
 import VictimInfo from './pages/VictimInfo';
+import VictimActionIntro from './pages/VictimActionIntro';
+import VictimAction from './pages/VictimAction';
+import {Box} from '@material-ui/core';
 
 function App() {
 	const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -19,6 +22,12 @@ function App() {
 			<Menu open={isOpenMenu} setOpen={setIsOpenMenu} />
 			<Router>
 				<Switch>
+					<Route exact path="/victima/accion/intro">
+						<VictimActionIntro />
+					</Route>
+					<Route exact path="/victima/accion">
+						<VictimAction />
+					</Route>
 					<Route exact path="/victima/info/intro">
 						<VictimInfoIntro />
 					</Route>

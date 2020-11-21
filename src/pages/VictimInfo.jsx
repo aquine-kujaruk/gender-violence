@@ -154,16 +154,27 @@ const VictimInfo = () => {
 						</Box>
 					</CustomSlide>
 					<Box height={0.06} width={1} display="flex" justifyContent="center" alignItems="center">
-						<ButtonCustom
-							style={{borderColor: 'white'}}
-							variant="outlined"
-							type="outlined"
-							onClick={onNext}
-							/* component={Link}
-							to={'/victima/info'} */
-						>
-							<img alt="" className={classes.buttonImageIcon} src={longArrow} />
-						</ButtonCustom>
+						{index !== 4 ? (
+							<ButtonCustom
+								style={{borderColor: 'white'}}
+								variant="outlined"
+								type="outlined"
+								onClick={onNext}
+							>
+								<img alt="" className={classes.buttonImageIcon} src={longArrow} />
+							</ButtonCustom>
+						) : (
+							<ButtonCustom
+								style={{borderColor: 'white'}}
+								variant="outlined"
+								type="outlined"
+								onClick={onNext}
+								component={Link}
+								to={'/victima/accion/intro'}
+							>
+								<img alt="" className={classes.buttonImageIcon} src={longArrow} />
+							</ButtonCustom>
+						)}
 					</Box>
 					<Box height={0.04} width={1}>
 						<Dots selected={index} length={data.length} bgColor="white" />

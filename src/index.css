@@ -10,17 +10,6 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.page-slide-enter {
-	transform: translateX(100%);
-}
-.page-slide-enter.page-slide-enter-active {
-	transform: translateX(0);
-	transition: transform 300ms ease;
-}
-.page-slide-exit {
-	transform: translateX(0);
-}
-.page-slide-exit.page-slide-exit-active {
-	transform: translateX(-100%);
-	transition: transform 300ms ease;
+.primary-color {
+	color: #ff5f2b;
 }
