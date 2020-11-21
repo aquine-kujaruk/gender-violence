@@ -17,7 +17,7 @@ const useStyle = makeStyles((theme) => ({
 		height: `calc(100vh - ${theme.mixins.toolbar.minHeight + 8 + 48}px)`,
 		margin: '24px 0',
 		borderRadius: 24,
-		overflow: 'scroll',
+		overflow: 'inherit',
 		backgroundColor: 'transparent',
 		boxShadow: theme.shadows[12],
 		'&.scrollable': {
@@ -46,7 +46,8 @@ const ContainerRounded = (props) => {
 		bgColor,
 		length,
 		disableLeft,
-		disableRight
+		disableRight,
+		noShadow
 	} = props;
 
 	const classes = useStyle();
@@ -75,14 +76,14 @@ const ContainerRounded = (props) => {
 			<Grid item>
 				<Box
 					width="100vw"
-					className={`${classes.headerContainer} ${textHeader ? 'text-header' : ''}`}
+					className={`${classes.headerContainer} ${textHeader ? 'text-header' : ''} `}
 					display="flex"
 					justifyContent="center"
 				>
 					{header}
 				</Box>
 			</Grid>
-			<Grid item xs={1}>
+			<Grid item xs={1} md={3}>
 				{scrollable && !disableLeft && (
 					<Box height={1} display="flex" alignItems="center" justifyContent="center">
 						<IconButton color="primary" onClick={onArrowLeft}>
@@ -92,7 +93,7 @@ const ContainerRounded = (props) => {
 				)}
 			</Grid>
 			{scrollable ? (
-				<Grid item xs={10} {...handlers}>
+				<Grid item xs={10} {...handlers} md={6}>
 					<CustomSlide ref={childRef} index={index} setIndex={setIndex} length={length}>
 						<Box
 							elevation={3}
@@ -100,25 +101,27 @@ const ContainerRounded = (props) => {
 							className={`${classes.container} ${scrollable ? 'scrollable' : ''} ${
 								textHeader ? 'text-header' : ''
 							}`}
+							style={noShadow ? {boxShadow: 'none'} : {}}
 						>
 							{children}
 						</Box>
 					</CustomSlide>
 				</Grid>
 			) : (
-				<Grid item xs={10}>
+				<Grid item xs={10} md={6}>
 					<Box
 						position="relative"
 						className={`${classes.container} ${scrollable ? 'scrollable' : ''} ${
 							textHeader ? 'text-header' : ''
 						}`}
+						style={noShadow ? {boxShadow: 'none'} : {}}
 					>
 						{children}
 					</Box>
 				</Grid>
 			)}
 
-			<Grid item xs={1}>
+			<Grid item xs={1} md={3}>
 				{scrollable && !disableRight && (
 					<Box height={1} display="flex" alignItems="center" justifyContent="center">
 						<IconButton color="primary" onClick={onArrowRight}>

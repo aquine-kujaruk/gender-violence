@@ -1,5 +1,5 @@
 import React, {Fragment, useRef, useState} from 'react';
-import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
+import {Box, Button, Grid, makeStyles, Typography} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import * as parse from 'html-react-parser';
 import ButtonCustom from '../components/ButtonCustom';
@@ -54,31 +54,24 @@ const useStyle = makeStyles((theme) => ({
 	},
 	buttonImageIcon: {
 		transform: 'rotate(90deg)',
-		height: '30%'
+		height: 16,
+		'&.isLast': {
+			transform: 'inherit'
+		}
 	},
 	text: {
 		height: '75%',
 		paddingTop: '25%',
 		paddingLeft: 16,
 		paddingRight: 16,
-		'&.fullWidth': {
+		'&.fullHeight': {
 			paddingTop: '30%'
 		}
 	}
 }));
 
 const Content = (props) => {
-	const {
-		children,
-		bodyHeight,
-		imageWidth,
-		imageHeight,
-		inverted,
-		isLast,
-		fullWidth,
-		image,
-		info
-	} = props;
+	const {bodyHeight, imageWidth, imageHeight, inverted, isLast, fullHeight, info} = props;
 	const classes = useStyle();
 	return (
 		<Fragment>
@@ -100,7 +93,7 @@ const Content = (props) => {
 					className={`${classes.textContainer} ${inverted && 'inverted'}`}
 				>
 					<Box
-						className={`${classes.text} ${fullWidth && 'fullWidth'}`}
+						className={`${classes.text} ${fullHeight && 'fullHeight'}`}
 						display="flex"
 						justifyContent="center"
 						alignItems="center"
@@ -123,11 +116,25 @@ const Content = (props) => {
 					}}
 				></Box>
 			</Box>
-			{!isLast && (
-				<Box height={0.1} width={1} display="flex" justifyContent="center" alignItems="center">
-					<img alt="" className={classes.buttonImageIcon} src={longArrow} />
-				</Box>
-			)}
+			<Box height={0.1} width={1} display="flex" justifyContent="center" alignItems="center">
+				{isLast ? (
+					<Button component={Link} to={'/victima/ver-testigo'}>
+						<img
+							alt=""
+							className={`${classes.buttonImageIcon} ${isLast && 'isLast'}`}
+							src={longArrow}
+						/>
+					</Button>
+				) : (
+					<Button>
+						<img
+							alt=""
+							className={`${classes.buttonImageIcon} ${isLast && 'isLast'}`}
+							src={longArrow}
+						/>
+					</Button>
+				)}
+			</Box>
 		</Fragment>
 	);
 };
@@ -180,7 +187,8 @@ const VictimAction = () => {
 		<VerticalSlider>
 			<Container backgroundColor="white">
 				<Grid className={classes.root} container>
-					<Grid item xs={12}>
+					<Grid item xs={0} sm={3}></Grid>
+					<Grid item xs={12} sm={6}>
 						<Box height={0.2} width={1}>
 							<Grid
 								className={classes.headerContainer}
@@ -206,13 +214,14 @@ const VictimAction = () => {
 			</Container>
 			<Container backgroundColor="white">
 				<Grid className={classes.root} container>
-					<Grid item xs={12}>
+					<Grid item xs={0} sm={3}></Grid>
+					<Grid item xs={12} sm={6}>
 						<Content
 							bodyHeight={0.9}
 							imageHeight={0.3}
 							imageWidth={0.85}
 							inverted
-							fullWidth
+							fullHeight
 							info={data[1]}
 						/>
 					</Grid>
@@ -220,13 +229,14 @@ const VictimAction = () => {
 			</Container>
 			<Container backgroundColor="white">
 				<Grid className={classes.root} container>
-					<Grid item xs={12}>
+					<Grid item xs={0} sm={3}></Grid>
+					<Grid item xs={12} sm={6}>
 						<Content
-							bodyHeight={1}
+							bodyHeight={0.9}
 							imageHeight={0.3}
 							imageWidth={0.85}
 							isLast
-							fullWidth
+							fullHeight
 							info={data[2]}
 						/>
 					</Grid>

@@ -48,7 +48,7 @@ const VictimIntroduction = () => {
 
 	const data = [
 		{
-			title: '¡No estas sola!',
+			title: '¡No estás sola!',
 			body: `
             65 de cada 100 mujeres en el Ecuador, han experimentado por lo menos un hecho de
             algún tipo de violencia en alguno de los distintos ámbitos a lo largo de su vida.
@@ -120,7 +120,7 @@ const VictimIntroduction = () => {
 				<Grid
 					className={classes.root}
 					container
-					direction="column"
+					direction="row"
 					justify="space-between"
 					alignItems="center"
 				>
