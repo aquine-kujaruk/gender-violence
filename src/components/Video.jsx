@@ -1,5 +1,6 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core';
+import video from '../assets/video.mp4';
 
 const useStyle = makeStyles((theme) => ({
 	video: {
@@ -16,16 +17,7 @@ const useStyle = makeStyles((theme) => ({
 
 const Video = () => {
 	const classes = useStyle();
-	return (
-		<video
-			className={classes.video}
-			loop
-			autoPlay
-			muted
-			src="https://static.videezy.com/system/resources/previews/000/017/941/original/ICON-VERSION9.mp4"
-			title="title"
-		></video>
-	);
+	return <video className={classes.video} loop autoPlay muted src={video} title="title"></video>;
 };
 
 export default Video;
