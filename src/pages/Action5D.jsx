@@ -8,6 +8,7 @@ import longArrow from '../assets/long-arrow.png';
 import ComponentToPdf from './../components/ComponentToPdf';
 import FlowMain from './FlowMain';
 import StopAbuseCases from './StopAbuseCases';
+import StopAbuseIntro from './StopAbuseIntro';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -112,7 +113,7 @@ const Action5D = () => {
 			</ContainerRounded>
 			{download && (
 				<ComponentToPdf setDownload={setDownload}>
-					<StopAbuseCases />
+					<StopAbuseIntro />
 				</ComponentToPdf>
 			)}
 		</Fragment>
