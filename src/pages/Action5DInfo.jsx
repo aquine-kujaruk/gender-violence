@@ -36,8 +36,7 @@ const useStyle = makeStyles((theme) => ({
 		padding: '20px 0'
 	},
 	imageIcon: {
-		height: 24,
-		paddingBottom: 16
+		height: 24
 	},
 	buttonImageIcon: {
 		width: '1.8rem',
@@ -199,26 +198,16 @@ const Action5DInfo = () => {
 							</Grid>
 							<Grid item className={classes.content}>
 								{index !== data.length - 1 ? (
-									<Box display="flex" justifyContent="center">
+									<Box display="flex" justifyContent="center" pb="5%">
 										<Button onClick={next}>
 											<img alt="" className={classes.imageIcon} src={longArrow} />
 										</Button>
 									</Box>
 								) : (
-									<Box mb="16px" display="flex" justifyContent="center">
-										<ButtonCustom
-											variant="outlined"
-											type="outlined"
-											component={Link}
-											to={'/victima/tipo'}
-										>
-											<Box display="flex" justifyContent="center">
-												<Typography className={classes.buttonText} variant="subtitle1">
-													Veamos que puedes hacer
-												</Typography>
-												<img alt="" className={classes.buttonImageIcon} src={longArrow} />
-											</Box>
-										</ButtonCustom>
+									<Box display="flex" justifyContent="center" pb="5%">
+										<Button component={Link} to={'/felicitaciones'}>
+											<img alt="" className={classes.imageIcon} src={longArrow} />
+										</Button>
 									</Box>
 								)}
 							</Grid>

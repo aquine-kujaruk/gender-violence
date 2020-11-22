@@ -11,18 +11,27 @@ const ComponentToPdf = ({children, setDownload}) => {
 	}, [ref, takeScreenShot]);
 
 	useEffect(() => {
+		const getSize = (base64) => {
+			const header = atob(base64.slice(0, 50)).slice(16, 24);
+			const uint8 = Uint8Array.from(header, (c) => c.charCodeAt(0));
+			const dataView = new DataView(uint8.buffer);
+
+			return {
+				width: dataView.getInt32(0),
+				height: dataView.getInt32(4)
+			};
+		};
+
 		const download = async (image) => {
-			const options = {orientation: 'p', unit: 'px', format: 'A4'};
-			var doc = new jsPDF(options);
+			const {width, height} = getSize(image.split('data:image/png;base64,')[1]);
+			var pdf = new jsPDF({
+				orientation: width > height ? 'L' : 'P',
+				unit: 'px',
+				format: [width, height]
+			});
+			pdf.addImage(image, 'JPEG', 0, 0, width, height);
 
-			let left = 0;
-			let top = 0;
-			const imgWidth = 414;
-			const imgHeight = 736;
-
-			doc.addImage(image, 'JPEG', left, top, imgWidth, imgHeight);
-
-			const blob = await doc.output('blob');
+			const blob = await pdf.output('blob');
 			const url = window.URL.createObjectURL(blob);
 
 			const link = document.createElement('a');

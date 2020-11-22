@@ -19,6 +19,8 @@ import StopAbuseCases from './pages/StopAbuseCases';
 import StopAbuseNext from './pages/StopAbuseNext';
 import Action5D from './pages/Action5D';
 import Action5DInfo from './pages/Action5DInfo';
+import Congratulations from './pages/Congratulations';
+import Final from './pages/Final';
 
 function App() {
 	const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -28,6 +30,12 @@ function App() {
 			<Menu open={isOpenMenu} setOpen={setIsOpenMenu} />
 			<Router>
 				<Switch>
+					<Route exact path="/final">
+						<Final />
+					</Route>
+					<Route exact path="/felicitaciones">
+						<Congratulations />
+					</Route>
 					<Route exact path="/5d/info">
 						<Action5DInfo />
 					</Route>

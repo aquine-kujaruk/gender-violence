@@ -1,7 +1,5 @@
 import React from 'react';
-import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
-import ButtonCustom from './ButtonCustom';
-import {Link} from 'react-router-dom';
+import {Box, Grid, makeStyles} from '@material-ui/core';
 
 const useStyle = makeStyles((theme) => ({
 	headerContainer: {

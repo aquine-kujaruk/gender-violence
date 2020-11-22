@@ -83,9 +83,9 @@ const StopAbuseCases = () => {
 			<Grid className={classes.root} container direction="row" justify="space-between">
 				<Grid item xs={12}>
 					<Typography className={classes.text} variant="h5">
-						Muchos de nosotros no somos capaces de actuar.
+						¿Cuál es tu caso?
 						<Typography className={classes.textBody} variant="subtitle2">
-							Pero muchas veces nos paralizamos, sin saber qué hacer.
+							Selecciona todas las opciones con las que te sientas identificado
 						</Typography>
 					</Typography>
 				</Grid>

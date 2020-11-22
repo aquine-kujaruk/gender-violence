@@ -90,9 +90,9 @@ const Action5D = () => {
 												className={classes.button}
 												variant="outlined"
 												type="outlined"
-												/* component={Link}
-                                            to={'/5D/info'} */
-												onClick={() => setDownload(true)}
+												component={Link}
+												to={'/5D/info'}
+												/* onClick={() => setDownload(true)} */
 											>
 												<Box display="flex" justifyContent="center">
 													<Typography className={classes.buttonText} variant="subtitle1">
@@ -113,7 +113,7 @@ const Action5D = () => {
 			</ContainerRounded>
 			{download && (
 				<ComponentToPdf setDownload={setDownload}>
-					<StopAbuseIntro />
+					<Action5D />
 				</ComponentToPdf>
 			)}
 		</Fragment>

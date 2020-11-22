@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
+import React from 'react';
+import {Grid, makeStyles, Typography} from '@material-ui/core';
 import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
 import ContainerRounded from './../components/ContainerRounded';
