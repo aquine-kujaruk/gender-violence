@@ -6,7 +6,7 @@ const ComponentToPdf = ({children, setDownload}) => {
 	const ref = createRef(null);
 	const [image, takeScreenShot] = useScreenshot();
 
-	const download = (image, {name = 'img', extension = 'jpeg'} = {}) => {
+	const download = async (image, {name = 'img', extension = 'jpeg'} = {}) => {
 		const options = {orientation: 'p', unit: 'mm', format: 'A4'};
 		var doc = new jsPDF(options);
 
@@ -17,13 +17,17 @@ const ComponentToPdf = ({children, setDownload}) => {
 
 		doc.addImage(image, 'JPEG', left, top, imgWidth, imgHeight);
 
-		const linkSource = doc.output('datauri');
-		const downloadLink = document.createElement('a');
+		const blob = await doc.output('blob');
+		const url = window.URL.createObjectURL(blob);
+
+		const link = document.createElement('a');
+		document.body.appendChild(link);
+		link.style = 'display: none';
 		const fileName = 'vct_illustration.pdf';
 
-		downloadLink.href = linkSource;
-		downloadLink.download = fileName;
-		downloadLink.click();
+		link.href = url;
+		link.download = fileName;
+		link.click();
 		setDownload(false);
 	};
 
