@@ -25,7 +25,7 @@ const useStyle = makeStyles((theme) => ({
 		color: theme.palette.primary.main
 	},
 	textBody: {
-		paddingTop: 12,
+		paddingTop: 8,
 		color: theme.palette.primary.main
 	},
 	checkboxLabel: {
@@ -130,7 +130,7 @@ const StopAbuseCases = () => {
 							variant="outlined"
 							type="outlined"
 							component={Link}
-							to={'/detenlo/elegir-caso'}
+							to={'/detenlo/siguiente'}
 						>
 							<img alt="" className={classes.buttonImageIcon} src={longArrow} />
 						</ButtonCustom>

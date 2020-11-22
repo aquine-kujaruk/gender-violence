@@ -12,11 +12,12 @@ import VictimInfoIntro from './pages/VictimInfoIntro';
 import VictimInfo from './pages/VictimInfo';
 import VictimActionIntro from './pages/VictimActionIntro';
 import VictimAction from './pages/VictimAction';
-import {Box} from '@material-ui/core';
 import VictimToWitness from './pages/VictimToWitness';
 import StopAbuse from './pages/StopAbuse';
 import StopAbuseIntro from './pages/StopAbuseIntro';
 import StopAbuseCases from './pages/StopAbuseCases';
+import StopAbuseNext from './pages/StopAbuseNext';
+import Action5D from './pages/Action5D';
 
 function App() {
 	const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -26,6 +27,12 @@ function App() {
 			<Menu open={isOpenMenu} setOpen={setIsOpenMenu} />
 			<Router>
 				<Switch>
+					<Route exact path="/5d">
+						<Action5D />
+					</Route>
+					<Route exact path="/detenlo/siguiente">
+						<StopAbuseNext />
+					</Route>
 					<Route exact path="/detenlo/elegir-caso">
 						<StopAbuseCases />
 					</Route>

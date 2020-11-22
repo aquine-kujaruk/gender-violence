@@ -13,3 +13,7 @@ code {
 .primary-color {
 	color: #ff5f2b;
 }
+
+#root {
+	overflow: hidden;
+}

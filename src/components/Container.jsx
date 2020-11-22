@@ -25,7 +25,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Container = (props) => {
-	const {children, uri, textButton, backgroundColor = '#ff5f2b'} = props;
+	const {children, button, backgroundColor = '#ff5f2b', frontbgColor} = props;
 
 	const classes = useStyle();
 
@@ -37,13 +37,17 @@ const Container = (props) => {
 			<Grid item>
 				<Box
 					position="relative"
-					className={`${classes.container} ${textButton ? '' : 'full-height'}`}
-					style={{backgroundColor: textButton ? '#ff5f2b' : 'transparent'}}
+					className={`${classes.container} ${button ? '' : 'full-height'}`}
+					style={
+						frontbgColor
+							? {backgroundColor: frontbgColor}
+							: {backgroundColor: button ? '#ff5f2b' : 'transparent'}
+					}
 				>
 					{children}
 				</Box>
 			</Grid>
-			{textButton && (
+			{button && (
 				<Grid item>
 					<Box
 						width="100vw"
@@ -52,11 +56,7 @@ const Container = (props) => {
 						alignItems="center"
 						justifyContent="center"
 					>
-						<ButtonCustom variant="contained" component={Link} to={uri} type="circular">
-							<Typography className={classes.buttonText} variant="subtitle1">
-								{textButton}
-							</Typography>
-						</ButtonCustom>
+						{button}
 					</Box>
 				</Grid>
 			)}

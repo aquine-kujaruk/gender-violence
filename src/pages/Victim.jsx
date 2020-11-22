@@ -1,5 +1,7 @@
 import {Grid, makeStyles, Typography} from '@material-ui/core';
 import React from 'react';
+import {Link} from 'react-router-dom';
+import ButtonCustom from '../components/ButtonCustom';
 import Container from './../components/Container';
 
 const useStyle = makeStyles((theme) => ({
@@ -16,7 +18,20 @@ const useStyle = makeStyles((theme) => ({
 const Victim = () => {
 	const classes = useStyle();
 	return (
-		<Container uri="/victima/introduccion" textButton="Estoy lista" backgroundColor="black">
+		<Container
+			uri="/victima/introduccion"
+			button={
+				<ButtonCustom
+					variant="contained"
+					component={Link}
+					to={'/victima/introduccion'}
+					type="circular"
+				>
+					<Typography variant="subtitle1">Estoy lista·o</Typography>
+				</ButtonCustom>
+			}
+			backgroundColor="black"
+		>
 			<Grid
 				className={classes.root}
 				container
