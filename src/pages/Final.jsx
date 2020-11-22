@@ -26,7 +26,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Final = () => {
-	console.log('url', process.env.PUBLIC_URL);
+	console.log('url', window.location.hostname);
 	const classes = useStyle();
 	return (
 		<Container>
