@@ -27,7 +27,7 @@ const useStyle = makeStyles((theme) => ({
 		height: `calc(100vh - ${theme.mixins.toolbar.minHeight + 8 + 30 + 48 + 80}px)`
 	},
 	text: {
-		fontWeight: '100'
+		fontWeight: 400
 	},
 	headerText: {
 		fontWeight: '100',
