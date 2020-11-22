@@ -3,7 +3,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import ButtonCustom from '../components/ButtonCustom';
 import Container from './../components/Container';
-import longArrow from '../assets/long-arrow-white.png';
+import {FacebookShareButton, WhatsappShareButton} from 'react-share';
+import {FacebookIcon, WhatsappIcon} from 'react-share';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -12,46 +13,63 @@ const useStyle = makeStyles((theme) => ({
 	},
 	text: {
 		fontWeight: 'bold',
-		color: 'white'
+		color: 'white',
+		textAlign: 'center'
 	},
 	textBody: {
-		paddingTop: 12
+		fontWeight: '400',
+		color: 'white',
+		textAlign: 'center'
 	},
-	buttonImageIcon: {
-		width: '2.5rem',
-		height: '1.5rem',
-		transform: 'scaleY(0.6)',
-		paddingLeft: 4
+	buttonText: {
+		fontWeight: 'bold',
+		color: 'white',
+		textAlign: 'center'
 	}
 }));
 
 const Final = () => {
-	console.log('url', window.location.hostname);
 	const classes = useStyle();
 	return (
 		<Container>
 			<Grid className={classes.root} container direction="row" justify="space-between">
-				<Grid item xs={12} style={{height: '20%'}} />
 				<Grid item xs={12}>
-					<Typography className={classes.text} variant="h4">
-						Muchos de nosotros no somos capaces de actuar.
-						<br />
-						<br />
-						Aunque nos gustaría.
-						<Typography className={classes.textBody} variant="subtitle1">
-							Pero muchas veces nos paralizamos, sin saber qué hacer.
-						</Typography>
+					<Typography className={classes.text} variant="h3">
+						¡Gracias por estar aquí!
 					</Typography>
 				</Grid>
-				<Grid xs={12} item>
-					<Box height={1} width={1} display="flex" justifyContent="center" alignItems="center">
+				<Grid item xs={12}>
+					<Typography className={classes.textBody} variant="h6">
+						¡Compártelo!
+						<br />
+						Quizá alguien más necesita esta información
+					</Typography>
+				</Grid>
+				<Grid item xs={12}>
+					<Box width={1} display="flex" justifyContent="center" alignItems="center">
+						<FacebookShareButton url={window.location.hostname}>
+							<FacebookIcon />
+						</FacebookShareButton>
+						<WhatsappShareButton url={`https://${window.location.hostname}`}>
+							<WhatsappIcon />
+						</WhatsappShareButton>
+					</Box>
+				</Grid>
+				<Grid item xs={12}>
+					<Box display="flex" justifyContent="center" px="32px">
 						<ButtonCustom
+							fullWidth
+							style={{borderColor: 'white'}}
 							variant="outlined"
 							type="outlined"
 							component={Link}
-							to={'/detenlo/elegir-caso'}
+							to={'/final'}
 						>
-							<img alt="" className={classes.buttonImageIcon} src={longArrow} />
+							<Box display="flex" justifyContent="center">
+								<Typography className={classes.buttonText} variant="h6">
+									Copiar link
+								</Typography>
+							</Box>
 						</ButtonCustom>
 					</Box>
 				</Grid>

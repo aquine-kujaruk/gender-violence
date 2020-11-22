@@ -17,6 +17,7 @@
 		"react-page-scroller": "^2.0.11-beta",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "4.0.0",
+		"react-share": "^4.3.1",
 		"react-swipeable": "^6.0.0",
 		"use-react-screenshot": "^1.0.2",
 		"web-vitals": "^0.2.4"
