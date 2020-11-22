@@ -18,6 +18,7 @@ import StopAbuseIntro from './pages/StopAbuseIntro';
 import StopAbuseCases from './pages/StopAbuseCases';
 import StopAbuseNext from './pages/StopAbuseNext';
 import Action5D from './pages/Action5D';
+import Action5DInfo from './pages/Action5DInfo';
 
 function App() {
 	const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -27,6 +28,9 @@ function App() {
 			<Menu open={isOpenMenu} setOpen={setIsOpenMenu} />
 			<Router>
 				<Switch>
+					<Route exact path="/5d/info">
+						<Action5DInfo />
+					</Route>
 					<Route exact path="/5d">
 						<Action5D />
 					</Route>

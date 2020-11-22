@@ -4,21 +4,21 @@ import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
 import ContainerRounded from '../components/ContainerRounded';
 import image5d from '../assets/big-5d.png';
+import longArrow from '../assets/long-arrow.png';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
 		height: '100%'
 	},
 	imageHeader: {
-		objectFit: 'contain'
+		objectFit: 'contain',
+		height: '100%'
 	},
 	text: {
 		fontWeight: 'bold',
 		textAlign: 'center',
-		color: '#ff5f2b'
-	},
-	textBody: {
-		textAlign: 'center'
+		color: '#ff5f2b',
+		padding: '0 16px'
 	},
 	buttonText: {
 		height: '1.4rem',
@@ -29,6 +29,12 @@ const useStyle = makeStyles((theme) => ({
 	},
 	button: {
 		borderColor: '#ff5f2b'
+	},
+	buttonImageIcon: {
+		height: '1.2rem',
+		width: '1.8rem',
+		transform: 'scaleY(0.6)',
+		paddingLeft: 16
 	}
 }));
 
@@ -78,12 +84,15 @@ const Action5D = () => {
 											variant="outlined"
 											type="outlined"
 											component={Link}
-											to={'/detenlo/intro'}
+											to={'/5D/info'}
 										>
 											<Box display="flex" justifyContent="center">
 												<Typography className={classes.buttonText} variant="subtitle1">
-													Si
+													Quiero saber más
 												</Typography>
+												<Box display="flex" alignItems="center">
+													<img alt="" className={classes.buttonImageIcon} src={longArrow} />
+												</Box>
 											</Box>
 										</ButtonCustom>
 									</Box>
