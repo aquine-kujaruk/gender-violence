@@ -31,6 +31,7 @@ const useStyle = makeStyles((theme) => ({
 	checkboxLabel: {
 		backgroundColor: 'white',
 		borderRadius: 24,
+		border: `1px solid ${theme.palette.secondary.main}`,
 		margin: '4px 0',
 		'&.checked': {
 			backgroundColor: theme.palette.primary.main
