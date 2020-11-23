@@ -71,7 +71,7 @@ const Action5D = () => {
 						</Grid>
 						<Grid item xs={12}>
 							<Typography className={classes.text} variant="subtitle1">
-								Alguna vez haz hecho algo para detenerlo?
+								Alguna vez has hecho algo para detenerlo?
 							</Typography>
 						</Grid>
 						<Grid item xs={12}>

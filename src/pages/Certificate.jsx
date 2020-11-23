@@ -12,7 +12,8 @@ import {useHistory} from 'react-router-dom';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
-		height: '100%'
+		height: '100%',
+		overflow: 'scroll'
 	},
 	text: {
 		fontWeight: '400',

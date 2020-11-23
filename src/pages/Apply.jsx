@@ -174,7 +174,10 @@ const Apply = () => {
 							to={`/certificado/${name}`}
 						>
 							<Box display="flex" justifyContent="center">
-								<Typography variant="subtitle1" style={{fontWeight: 'bold'}}>
+								<Typography
+									variant="subtitle1"
+									style={{fontWeight: 'bold', color: disabled ? 'inherit' : 'white'}}
+								>
 									Solicitar certificado
 								</Typography>
 							</Box>

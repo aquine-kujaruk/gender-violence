@@ -2,6 +2,8 @@ import React from 'react';
 import {Grid, makeStyles, Typography, Box} from '@material-ui/core';
 import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
+import * as parse from 'html-react-parser';
+import withWidth, {isWidthUp} from '@material-ui/core/withWidth';
 import ContainerRounded from './../components/ContainerRounded';
 import longArrow from '../assets/long-arrow-white.png';
 
@@ -10,7 +12,8 @@ const useStyle = makeStyles((theme) => ({
 		height: '100%',
 		padding: '8%',
 		backgroundColor: theme.palette.primary.main,
-		borderRadius: 24
+		borderRadius: 24,
+		overflow: 'scroll'
 	},
 	text: {
 		fontWeight: 'bold',
@@ -31,7 +34,7 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
-const VictimInfoIntro = ({link = '/victima/info'}) => {
+const VictimInfoIntro = ({link = '/victima/info', width}) => {
 	const classes = useStyle();
 
 	return (
@@ -39,7 +42,9 @@ const VictimInfoIntro = ({link = '/victima/info'}) => {
 			<Grid className={classes.root} container direction="row" justify="space-between">
 				<Grid item xs={12}>
 					<Typography className={classes.text} variant="h4">
-						Lamentablemente ocurre todos los días, en todas partes
+						{isWidthUp('sm', width)
+							? parse('Lamentablemente ocurre todos los días, en todas partes')
+							: parse('Lamentable- <br /> mente ocurre todos los días, en todas partes')}
 					</Typography>
 				</Grid>
 				<Grid xs={12} item>
@@ -72,4 +77,4 @@ const VictimInfoIntro = ({link = '/victima/info'}) => {
 	);
 };
 
-export default VictimInfoIntro;
+export default withWidth()(VictimInfoIntro);

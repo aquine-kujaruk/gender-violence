@@ -30,7 +30,7 @@ const VictimType = () => {
 				<Grid item xs={12}>
 					<Box height={1} width={1} display="flex" justifyContent="center" alignItems="center">
 						<Typography className={classes.text} variant="h4">
-							¿Alguna vez has sido victima de algún tipo de violencia
+							¿Alguna vez has sido víctima de algún tipo de violencia
 						</Typography>
 					</Box>
 				</Grid>

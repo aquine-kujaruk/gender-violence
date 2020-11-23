@@ -54,7 +54,13 @@ const Menu = ({open, setOpen}) => {
 				<ListItem button component={Link} to={'/'} color="inherit" onClick={() => setOpen(false)}>
 					<ListItemText primary="Estadísticas" />
 				</ListItem>
-				<ListItem button component={Link} to={'/'} color="inherit" onClick={() => setOpen(false)}>
+				<ListItem
+					button
+					component={Link}
+					to={'/numeros-emergencia'}
+					color="inherit"
+					onClick={() => setOpen(false)}
+				>
 					<ListItemText primary="Números de emergencia" />
 				</ListItem>
 			</List>

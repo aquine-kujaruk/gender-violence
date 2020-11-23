@@ -28,7 +28,8 @@ const useStyle = makeStyles((theme) => ({
 		textShadow: '1px 1px 2px #00000075'
 	},
 	buttonText: {
-		fontWeight: '100'
+		fontWeight: '100',
+		color: 'white'
 	}
 }));
 

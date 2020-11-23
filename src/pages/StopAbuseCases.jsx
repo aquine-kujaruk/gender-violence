@@ -61,7 +61,7 @@ const useStyle = makeStyles((theme) => ({
 
 const data = [
 	'Me pareció que no era mi problema',
-	'Pense que no cambiaría gran cosa',
+	'Pensé que no cambiaría gran cosa',
 	'Nadie hizo nada',
 	'Sentí que era un tema cultural',
 	'No supe que hacer',

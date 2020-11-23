@@ -33,7 +33,9 @@ const StopAbuseNext = () => {
 		<Container
 			button={
 				<ButtonCustom variant="contained" component={Link} to={'/5d'} type="circular">
-					<Typography variant="subtitle1">Estoy lista·o</Typography>
+					<Typography variant="subtitle1" style={{color: 'white'}}>
+						Estoy lista·o
+					</Typography>
 					<img alt="" className={classes.buttonImageIcon} src={longArrow} />
 				</ButtonCustom>
 			}

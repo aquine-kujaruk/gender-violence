@@ -27,7 +27,9 @@ const Victim = () => {
 					to={'/victima/introduccion'}
 					type="circular"
 				>
-					<Typography variant="subtitle1">Estoy lista·o</Typography>
+					<Typography variant="subtitle1" style={{color: 'white'}}>
+						Estoy lista·o
+					</Typography>
 				</ButtonCustom>
 			}
 			backgroundColor="black"
@@ -35,7 +37,7 @@ const Victim = () => {
 			<Grid
 				className={classes.root}
 				container
-				direction="column"
+				direction="row"
 				justify="space-evenly"
 				alignItems="center"
 			>
@@ -47,7 +49,7 @@ const Victim = () => {
 				<Grid item>
 					<Typography className={classes.text} variant="h4">
 						Estás aquí, en un espacio en el que encontrarás la ayuda y la fuerza para combatir la
-						violencia de genero.
+						violencia de género.
 					</Typography>
 				</Grid>
 			</Grid>

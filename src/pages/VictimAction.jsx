@@ -145,7 +145,7 @@ const VictimAction = () => {
 			title: '',
 			image: firstImage,
 			text: `
-                Dile a la persona que te acosa ó pretende ser violenta que pare de hacerlo, que se
+                Dile a la persona que te acosa o pretende ser violenta que pare de hacerlo, que se
                 aleje de ti o pregúntale por qué te hace sentir incómoda.
                 <br /> Una vez que establezcas los límites, no mantengas un diálogo con ella, en ese
                 momento no estará predispuesta a aprender.

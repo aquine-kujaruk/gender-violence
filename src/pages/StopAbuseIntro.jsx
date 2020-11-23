@@ -15,7 +15,8 @@ const useStyle = makeStyles((theme) => ({
 		color: 'white'
 	},
 	textBody: {
-		paddingTop: 12
+		paddingTop: 12,
+		color: 'white'
 	},
 	buttonImageIcon: {
 		width: '2.5rem',

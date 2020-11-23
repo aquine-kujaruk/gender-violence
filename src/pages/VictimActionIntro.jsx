@@ -8,7 +8,8 @@ import longArrow from '../assets/long-arrow-white.png';
 const useStyle = makeStyles((theme) => ({
 	root: {
 		height: '100%',
-		padding: '8%'
+		padding: '8%',
+		overflow: 'scroll'
 	},
 	text: {
 		fontWeight: 'bold',

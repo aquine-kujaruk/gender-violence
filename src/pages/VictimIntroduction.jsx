@@ -9,7 +9,8 @@ import {Link} from 'react-router-dom';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
-		height: '100%'
+		height: '100%',
+		overflow: 'scroll'
 	},
 	header: {
 		width: '100%',
@@ -53,7 +54,7 @@ const VictimIntroduction = () => {
             65 de cada 100 mujeres en el Ecuador, han experimentado por lo menos un hecho de
             algún tipo de violencia en alguno de los distintos ámbitos a lo largo de su vida.
             <br /> <br />
-            A pesar de ello, muchas de nosotras no lo denunciamos por miedo o verguenza.
+            A pesar de ello, muchas de nosotras no lo denunciamos por miedo o vergüenza.
             <br /> <br />
             Incluso terminamos por culparnos a nosotras mismas cuando, en realidad, la culpa
             nunca es nuestra.
@@ -95,9 +96,9 @@ const VictimIntroduction = () => {
             <br /> <br />
             Pero existen diferentes reacciones con las que puedes responder. Puesto que si decides responder, lo haces por ti.
             <br /> <br />
-            ¿Te has visto en una situacion así?
+            ¿Te has visto en una situación así?
             <br />
-            Encuentra la manera de reaccionar aqui.
+            Encuentra la manera de reaccionar aquí.
             `
 		}
 	];
