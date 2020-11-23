@@ -37,7 +37,8 @@ const useStyle = makeStyles((theme) => ({
 	imageContainer: {
 		borderBottomRightRadius: '24px',
 		borderTopRightRadius: '24px',
-
+		boxShadow: 'inset 0px -16px 24px 0px #000000d1',
+		backgroundColor: 'white',
 		border: 'solid 2px #fe5f2b',
 		borderLeft: 'none',
 		'&.inverted': {
@@ -64,6 +65,14 @@ const useStyle = makeStyles((theme) => ({
 		'&.fullHeight': {
 			paddingTop: '30%'
 		}
+	},
+	imageText: {
+		color: 'white',
+		fontWeight: '500',
+		position: 'absolute',
+		bottom: 0,
+		padding: 8,
+		textShadow: '1px 1px 2px #00000075'
 	}
 }));
 
@@ -111,7 +120,15 @@ const Content = (props) => {
 						backgroundSize: 'cover',
 						backgroundRepeat: 'no-repeat'
 					}}
-				></Box>
+				>
+					<Typography
+						className={classes.imageText}
+						style={inverted ? {left: 0} : {right: 0}}
+						variant="h4"
+					>
+						{info.title}
+					</Typography>
+				</Box>
 			</Box>
 			<Box height={0.1} width={1} display="flex" justifyContent="center" alignItems="center">
 				{isLast ? (
@@ -142,7 +159,7 @@ const VictimAction = () => {
 
 	const data = [
 		{
-			title: '',
+			title: 'Dí algo',
 			image: firstImage,
 			text: `
                 Dile a la persona que te acosa o pretende ser violenta que pare de hacerlo, que se
@@ -154,7 +171,7 @@ const VictimAction = () => {
             `
 		},
 		{
-			title: '',
+			title: 'Pide ayuda',
 			image: secondImage,
 			text: `
                 <span class="primary-color">
@@ -169,7 +186,7 @@ const VictimAction = () => {
                 la autoridad.`
 		},
 		{
-			title: '',
+			title: 'Grábalo',
 			image: firstImage,
 			text: `
                 Si te sientes a salvo, piensa en hacer una foto o un vídeo de lo que está ocurriendo,
