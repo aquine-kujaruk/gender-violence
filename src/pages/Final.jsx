@@ -1,10 +1,11 @@
 import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState} from 'react';
 import ButtonCustom from '../components/ButtonCustom';
 import Container from './../components/Container';
 import {FacebookShareButton, WhatsappShareButton} from 'react-share';
-import {FacebookIcon, WhatsappIcon} from 'react-share';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -24,12 +25,27 @@ const useStyle = makeStyles((theme) => ({
 	buttonText: {
 		fontWeight: 'bold',
 		color: 'white',
-		textAlign: 'center'
+		textAlign: 'center',
+		'&.copied': {
+			color: theme.palette.primary.main
+		}
+	},
+	socialButton: {
+		padding: '8px !important',
+		margin: '0 8px',
+		borderRadius: '50%',
+		backgroundColor: 'white !important'
+	},
+	socialIcon: {
+		fontSize: 64,
+		backgroundColor: 'transparent'
 	}
 }));
 
 const Final = () => {
 	const classes = useStyle();
+	const [copied, setCopied] = useState(false);
+
 	return (
 		<Container>
 			<Grid className={classes.root} container direction="row" justify="space-between">
@@ -47,30 +63,46 @@ const Final = () => {
 				</Grid>
 				<Grid item xs={12}>
 					<Box width={1} display="flex" justifyContent="center" alignItems="center">
-						<FacebookShareButton url={window.location.hostname}>
-							<FacebookIcon />
+						<FacebookShareButton
+							className={classes.socialButton}
+							url={`https://${window.location.hostname}`}
+						>
+							<FacebookIcon color="primary" className={classes.socialIcon} />
 						</FacebookShareButton>
-						<WhatsappShareButton url={`https://${window.location.hostname}`}>
-							<WhatsappIcon />
+						<WhatsappShareButton
+							className={classes.socialButton}
+							url={`https://${window.location.hostname}`}
+						>
+							<WhatsAppIcon color="primary" className={classes.socialIcon} />
 						</WhatsappShareButton>
 					</Box>
 				</Grid>
 				<Grid item xs={12}>
 					<Box display="flex" justifyContent="center" px="32px">
-						<ButtonCustom
-							fullWidth
-							style={{borderColor: 'white'}}
-							variant="outlined"
-							type="outlined"
-							component={Link}
-							to={'/final'}
+						<CopyToClipboard
+							text={`https://${window.location.hostname}`}
+							onCopy={() => setCopied(true)}
 						>
-							<Box display="flex" justifyContent="center">
-								<Typography className={classes.buttonText} variant="h6">
-									Copiar link
-								</Typography>
-							</Box>
-						</ButtonCustom>
+							<ButtonCustom
+								fullWidth
+								style={
+									copied
+										? {backgroundColor: 'white', textTransform: 'none'}
+										: {borderColor: 'white', textTransform: 'none'}
+								}
+								variant="outlined"
+								type="outlined"
+							>
+								<Box display="flex" justifyContent="center">
+									<Typography
+										className={`${classes.buttonText} ${copied && 'copied'}`}
+										variant="h6"
+									>
+										{copied ? 'Link copiado' : 'Copiar link'}
+									</Typography>
+								</Box>
+							</ButtonCustom>
+						</CopyToClipboard>
 					</Box>
 				</Grid>
 			</Grid>

@@ -22,16 +22,25 @@ const useStyle = makeStyles((theme) => ({
 		maxWidth: 350,
 		borderRadius: 30,
 		borderColor: '#ff5f2b'
+	},
+	disabled: {
+		backgroundColor: '#e7e7e7'
 	}
 }));
 
 const ButtonCustom = (props) => {
-	const {children, variant, type} = props;
+	const {children, variant, type, disabled} = props;
 	const classes = useStyle();
 	return (
 		<Button
 			{...props}
-			className={variant === 'outlined' ? classes.outlined : `${classes.button} ${type}`}
+			className={
+				variant === 'outlined'
+					? classes.outlined
+					: disabled
+					? classes.disabled
+					: `${classes.button} ${type}`
+			}
 		>
 			{children}
 		</Button>

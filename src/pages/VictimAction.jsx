@@ -1,12 +1,9 @@
-import React, {Fragment, useRef, useState} from 'react';
+import React, {Fragment, useRef} from 'react';
 import {Box, Button, Grid, makeStyles, Typography} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import * as parse from 'html-react-parser';
-import ButtonCustom from '../components/ButtonCustom';
 import Container from './../components/Container';
 import longArrow from '../assets/long-arrow.png';
-import Dots from './../components/Dots';
-import CustomSlide from './../components/CustomSlide';
 import firstImage from '../assets/4-1.jpg';
 import secondImage from '../assets/5-1.jpg';
 import VerticalSlider from './../components/VerticalSlider';
@@ -71,7 +68,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Content = (props) => {
-	const {bodyHeight, imageWidth, imageHeight, inverted, isLast, fullHeight, info} = props;
+	const {onNext, bodyHeight, imageWidth, imageHeight, inverted, isLast, fullHeight, info} = props;
 	const classes = useStyle();
 	return (
 		<Fragment>
@@ -126,7 +123,7 @@ const Content = (props) => {
 						/>
 					</Button>
 				) : (
-					<Button style={{height: 40}}>
+					<Button style={{height: 40}} onClick={onNext}>
 						<img alt="" className={classes.buttonImageIcon} src={longArrow} />
 					</Button>
 				)}
@@ -137,8 +134,11 @@ const Content = (props) => {
 
 const VictimAction = () => {
 	const classes = useStyle();
+	const childRef = useRef();
 
-	const onNext = () => {};
+	const onNext = () => {
+		childRef.current.onNext();
+	};
 
 	const data = [
 		{
@@ -180,7 +180,7 @@ const VictimAction = () => {
 	];
 
 	return (
-		<VerticalSlider>
+		<VerticalSlider ref={childRef}>
 			<Container backgroundColor="white">
 				<Grid className={classes.root} container>
 					<Grid item xs={0} sm={3}></Grid>
@@ -204,7 +204,13 @@ const VictimAction = () => {
 								</Grid>
 							</Grid>
 						</Box>
-						<Content bodyHeight={0.7} imageHeight={0.35} imageWidth={0.75} info={data[0]} />
+						<Content
+							onNext={onNext}
+							bodyHeight={0.7}
+							imageHeight={0.35}
+							imageWidth={0.75}
+							info={data[0]}
+						/>
 					</Grid>
 				</Grid>
 			</Container>
@@ -213,6 +219,7 @@ const VictimAction = () => {
 					<Grid item xs={0} sm={3}></Grid>
 					<Grid item xs={12} sm={6}>
 						<Content
+							onNext={onNext}
 							bodyHeight={0.9}
 							imageHeight={0.3}
 							imageWidth={0.85}
@@ -228,6 +235,7 @@ const VictimAction = () => {
 					<Grid item xs={0} sm={3}></Grid>
 					<Grid item xs={12} sm={6}>
 						<Content
+							onNext={onNext}
 							bodyHeight={0.9}
 							imageHeight={0.3}
 							imageWidth={0.85}

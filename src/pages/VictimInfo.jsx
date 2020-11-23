@@ -74,7 +74,7 @@ const data = [
 	}
 ];
 
-const VictimInfo = () => {
+const VictimInfo = ({link = '/victima/accion/intro'}) => {
 	const classes = useStyle();
 	const [slider1Ref, slider2Ref] = [useRef(), useRef()];
 
@@ -170,7 +170,7 @@ const VictimInfo = () => {
 								type="outlined"
 								onClick={onNext}
 								component={Link}
-								to={'/victima/accion/intro'}
+								to={link}
 							>
 								<img alt="" className={classes.buttonImageIcon} src={longArrow} />
 							</ButtonCustom>

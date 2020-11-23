@@ -22,7 +22,7 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
-const VictimType = () => {
+const Witness = () => {
 	const classes = useStyle();
 	return (
 		<Container>
@@ -30,13 +30,13 @@ const VictimType = () => {
 				<Grid item xs={12}>
 					<Box height={1} width={1} display="flex" justifyContent="center" alignItems="center">
 						<Typography className={classes.text} variant="h4">
-							¿Alguna vez has sido victima de algún tipo de violencia
+							¿Alguna vez has presenciado una situación de violencia de género?
 						</Typography>
 					</Box>
 				</Grid>
 				<Grid xs={12} item>
 					<Box height={1} width={1} pt="25%">
-						{['Si', 'No', 'No lo sé'].map((item, index) => (
+						{['Si', 'No lo sé'].map((item, index) => (
 							<Box key={index} width={1} py="16px" display="flex" justifyContent="center">
 								<ButtonCustom
 									fullWidth
@@ -44,7 +44,7 @@ const VictimType = () => {
 									variant="outlined"
 									type="outlined"
 									component={Link}
-									to={'/victima/info/intro'}
+									to={'/testigo/info/intro'}
 								>
 									<Box display="flex" justifyContent="center">
 										<Typography className={classes.buttonText} variant="subtitle1">
@@ -61,4 +61,4 @@ const VictimType = () => {
 	);
 };
 
-export default VictimType;
+export default Witness;

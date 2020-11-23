@@ -4,6 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import ToggleIcon from 'material-ui-toggle-icon';
 import logo from '../assets/logo.png';
+import {Link} from 'react-router-dom';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -43,7 +44,7 @@ const Navbar = ({open, setOpen}) => {
 						/>
 					</IconButton>
 					<div className={classes.separator} />
-					<Button color="inherit">
+					<Button component={Link} to={'/'} color="inherit">
 						<img className={classes.logo} src={logo} alt="6" border="0" />
 					</Button>
 				</Toolbar>

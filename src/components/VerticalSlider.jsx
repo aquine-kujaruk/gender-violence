@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {forwardRef, useImperativeHandle, useState} from 'react';
 import ReactPageScroller from 'react-page-scroller';
 
-const VerticalSlider = (props) => {
+const VerticalSlider = forwardRef((props, ref) => {
 	const {children} = props;
 	const blockedUp = props.blockedUp || [];
 	const blockedDown = props.blockedDown || [];
@@ -9,6 +9,12 @@ const VerticalSlider = (props) => {
 	const [currentPage, setCurrentPage] = useState();
 	const [blockScrollUp, setBlockScrollUp] = useState(false);
 	const [blockScrollDown, setBlockScrollDown] = useState(false);
+
+	useImperativeHandle(ref, () => ({
+		onNext() {
+			setCurrentPage(currentPage + 1);
+		}
+	}));
 
 	const handlePageChange = (number) => {
 		setCurrentPage(number);
@@ -32,6 +38,6 @@ const VerticalSlider = (props) => {
 			</ReactPageScroller>
 		</div>
 	);
-};
+});
 
 export default VerticalSlider;

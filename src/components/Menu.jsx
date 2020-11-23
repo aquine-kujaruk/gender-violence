@@ -1,5 +1,6 @@
 import React from 'react';
 import {Dialog, List, ListItem, ListItemText, makeStyles, Slide} from '@material-ui/core';
+import {Link} from 'react-router-dom';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="right" ref={ref} {...props} />;
@@ -32,22 +33,28 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
-const Menu = ({open}) => {
+const Menu = ({open, setOpen}) => {
 	const classes = useStyle();
 
 	return (
 		<Dialog className={classes.root} fullScreen open={open} TransitionComponent={Transition}>
 			<List className={classes.list}>
-				<ListItem button>
+				<ListItem button component={Link} to={'/'} color="inherit" onClick={() => setOpen(false)}>
 					<ListItemText primary="Inicio" />
 				</ListItem>
-				<ListItem button>
+				<ListItem
+					button
+					component={Link}
+					to={'/mensajes'}
+					color="inherit"
+					onClick={() => setOpen(false)}
+				>
 					<ListItemText primary="Mensajes" />
 				</ListItem>
-				<ListItem button>
+				<ListItem button component={Link} to={'/'} color="inherit" onClick={() => setOpen(false)}>
 					<ListItemText primary="Estadísticas" />
 				</ListItem>
-				<ListItem button>
+				<ListItem button component={Link} to={'/'} color="inherit" onClick={() => setOpen(false)}>
 					<ListItemText primary="Números de emergencia" />
 				</ListItem>
 			</List>

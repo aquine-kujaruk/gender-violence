@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, makeStyles, Typography} from '@material-ui/core';
+import {Grid, makeStyles, Typography, Box} from '@material-ui/core';
 import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
 import ContainerRounded from './../components/ContainerRounded';
@@ -9,7 +9,8 @@ const useStyle = makeStyles((theme) => ({
 	root: {
 		height: '100%',
 		padding: '8%',
-		backgroundColor: theme.palette.primary.main
+		backgroundColor: theme.palette.primary.main,
+		borderRadius: 24
 	},
 	text: {
 		fontWeight: 'bold',
@@ -30,7 +31,7 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
-const VictimInfoIntro = () => {
+const VictimInfoIntro = ({link = '/victima/info'}) => {
 	const classes = useStyle();
 
 	return (
@@ -50,19 +51,21 @@ const VictimInfoIntro = () => {
 					</Typography>
 				</Grid>
 				<Grid xs={12} item>
-					<ButtonCustom
-						fullWidth
-						style={{borderColor: 'white', height: '100%'}}
-						variant="outlined"
-						type="outlined"
-						component={Link}
-						to={'/victima/info'}
-					>
-						<Typography className={classes.buttonText} variant="subtitle1">
-							Queremos enseñarte un poco más sobre esto
-						</Typography>
-						<img alt="" className={classes.buttonImageIcon} src={longArrow} />
-					</ButtonCustom>
+					<Box height={1} width={1} display="flex" justifyContent="center" alignItems="center">
+						<ButtonCustom
+							fullWidth
+							style={{borderColor: 'white', height: '100%'}}
+							variant="outlined"
+							type="outlined"
+							component={Link}
+							to={link}
+						>
+							<Typography className={classes.buttonText} variant="subtitle1">
+								Queremos enseñarte un poco más sobre esto
+							</Typography>
+							<img alt="" className={classes.buttonImageIcon} src={longArrow} />
+						</ButtonCustom>
+					</Box>
 				</Grid>
 			</Grid>
 		</ContainerRounded>

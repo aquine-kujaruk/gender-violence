@@ -21,15 +21,34 @@ import Action5D from './pages/Action5D';
 import Action5DInfo from './pages/Action5DInfo';
 import Congratulations from './pages/Congratulations';
 import Final from './pages/Final';
+import Certificate from './pages/Certificate';
+import Apply from './pages/Apply';
+import Witness from './pages/Witness';
+import WitnessInfoIntro from './pages/WitnessInfoIntro';
+import WitnessInfo from './pages/WitnessInfo';
+import Messages from './pages/Messages';
+import Emergency from './pages/Emergency';
 
 function App() {
 	const [isOpenMenu, setIsOpenMenu] = useState(false);
 	return (
 		<ThemeProvider theme={theme}>
-			<Navbar open={isOpenMenu} setOpen={setIsOpenMenu} />
-			<Menu open={isOpenMenu} setOpen={setIsOpenMenu} />
 			<Router>
+				<Navbar open={isOpenMenu} setOpen={setIsOpenMenu} />
+				<Menu open={isOpenMenu} setOpen={setIsOpenMenu} />
 				<Switch>
+					<Route exact path="/numeros-emergencia">
+						<Emergency />
+					</Route>
+					<Route exact path="/mensajes">
+						<Messages />
+					</Route>
+					<Route exact path="/solicitud">
+						<Apply />
+					</Route>
+					<Route path="/certificado/:fullname">
+						<Certificate />
+					</Route>
 					<Route exact path="/final">
 						<Final />
 					</Route>
@@ -53,6 +72,15 @@ function App() {
 					</Route>
 					<Route exact path="/detenlo">
 						<StopAbuse />
+					</Route>
+					<Route exact path="/testigo/info/intro">
+						<WitnessInfoIntro />
+					</Route>
+					<Route exact path="/testigo/info">
+						<WitnessInfo />
+					</Route>
+					<Route exact path="/testigo">
+						<Witness />
 					</Route>
 					<Route exact path="/victima/ver-testigo">
 						<VictimToWitness />

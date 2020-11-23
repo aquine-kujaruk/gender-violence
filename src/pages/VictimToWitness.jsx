@@ -34,32 +34,30 @@ const VictimToWitness = () => {
 		<Container>
 			<Grid className={classes.root} container direction="row" justify="space-evenly">
 				<Grid item xs={12}>
-					<Typography className={classes.text} variant="h4">
-						Ahora mira lo que puedes hacer si eres un testigo
-					</Typography>
+					<Box height={1} width={1} display="flex" justifyContent="center" alignItems="center">
+						<Typography className={classes.text} variant="h3">
+							Ahora mira lo que puedes hacer si eres un testigo
+						</Typography>
+					</Box>
 				</Grid>
-				<Grid xs={12} item>
-					<Grid className={classes.root} container direction="row" justify="space-evenly">
-						<Grid item xs={12}>
-							<Box py="8px" display="flex" justifyContent="center">
-								<ButtonCustom
-									fullWidth
-									style={{borderColor: 'white'}}
-									variant="outlined"
-									type="outlined"
-									component={Link}
-									to={'/detenlo'}
-								>
-									<Box display="flex" justifyContent="center">
-										<Typography className={classes.buttonText} variant="subtitle1">
-											Estoy lista
-										</Typography>
-										<img alt="" className={classes.buttonImageIcon} src={longArrow} />
-									</Box>
-								</ButtonCustom>
+				<Grid item xs={12}>
+					<Box height={1} width={1} display="flex" justifyContent="center" alignItems="center">
+						<ButtonCustom
+							fullWidth
+							style={{borderColor: 'white'}}
+							variant="outlined"
+							type="outlined"
+							component={Link}
+							to={'/detenlo'}
+						>
+							<Box display="flex" justifyContent="center">
+								<Typography className={classes.buttonText} variant="subtitle1">
+									Estoy lista·o
+								</Typography>
+								<img alt="" className={classes.buttonImageIcon} src={longArrow} />
 							</Box>
-						</Grid>
-					</Grid>
+						</ButtonCustom>
+					</Box>
 				</Grid>
 			</Grid>
 		</Container>

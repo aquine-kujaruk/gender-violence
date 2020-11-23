@@ -2,7 +2,7 @@ import React, {useEffect, createRef} from 'react';
 import {useScreenshot} from 'use-react-screenshot';
 import {jsPDF} from 'jspdf';
 
-const ComponentToPdf = ({children, setDownload}) => {
+const ComponentToPdf = ({children, setDownload, setStatus}) => {
 	const ref = createRef(null);
 	const [image, takeScreenShot] = useScreenshot();
 
@@ -23,32 +23,37 @@ const ComponentToPdf = ({children, setDownload}) => {
 		};
 
 		const download = async (image) => {
-			const {width, height} = getSize(image.split('data:image/png;base64,')[1]);
-			var pdf = new jsPDF({
-				orientation: width > height ? 'L' : 'P',
-				unit: 'px',
-				format: [width, height]
-			});
-			pdf.addImage(image, 'JPEG', 0, 0, width, height);
+			try {
+				const {width, height} = getSize(image.split('data:image/png;base64,')[1]);
+				var pdf = new jsPDF({
+					orientation: width > height ? 'L' : 'P',
+					unit: 'px',
+					format: [width, height]
+				});
+				pdf.addImage(image, 'JPEG', 0, 0, width, height);
 
-			const blob = await pdf.output('blob');
-			const url = window.URL.createObjectURL(blob);
+				const blob = await pdf.output('blob');
+				const url = window.URL.createObjectURL(blob);
 
-			const link = document.createElement('a');
-			document.body.appendChild(link);
-			link.style = 'display: none';
-			const fileName = 'download.pdf';
+				const link = document.createElement('a');
+				document.body.appendChild(link);
+				link.style = 'display: none';
+				const fileName = 'download.pdf';
 
-			link.href = url;
-			link.download = fileName;
-			link.click();
+				link.href = url;
+				link.download = fileName;
+				link.click();
+				setStatus('success');
+			} catch (error) {
+				setStatus('error');
+			}
 			setDownload(false);
 		};
 
 		if (image) {
 			download(image);
 		}
-	}, [image, setDownload]);
+	}, [image, setDownload, setStatus]);
 
 	return <div ref={ref}>{children}</div>;
 };

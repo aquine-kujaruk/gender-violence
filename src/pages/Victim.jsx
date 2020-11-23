@@ -36,7 +36,7 @@ const Victim = () => {
 				className={classes.root}
 				container
 				direction="column"
-				justify="space-between"
+				justify="space-evenly"
 				alignItems="center"
 			>
 				<Grid item>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
 import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
@@ -98,7 +98,7 @@ const Congratulations = () => {
 											variant="outlined"
 											type="outlined"
 											component={Link}
-											to={'/detenlo/intro'}
+											to={'/solicitud'}
 										>
 											<Box display="flex" justifyContent="center">
 												<Typography className={classes.buttonText} variant="subtitle1">

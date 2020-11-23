@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Box, makeStyles, Typography} from '@material-ui/core';
 import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
+import * as parse from 'html-react-parser';
 import ContainerRounded from './../components/ContainerRounded';
 import headerImage from '../assets/que-hacer.png';
 import slide1Image from '../assets/2-1.jpg';
@@ -38,7 +39,18 @@ const Flow = () => {
 
 	const header = <img src={headerImage} alt="" className={classes.textImage} />;
 
-	const urls = [slide1Image, slide2Image];
+	const data = [
+		{
+			title: 'Cuando <br /> te ocurre a ti',
+			url: slide1Image,
+			link: '/victima'
+		},
+		{
+			title: 'Cuando <br /> eres testigo',
+			url: slide2Image,
+			link: '/testigo'
+		}
+	];
 
 	return (
 		<ContainerRounded
@@ -48,18 +60,22 @@ const Flow = () => {
 			index={index}
 			setIndex={setIndex}
 			bgColor={index === 0 ? 'black' : 'white'}
-			length={urls.length}
+			length={data.length}
 		>
-			<Box height={1}>
-				<img src={urls[index]} width="100%" height="100%" alt="flow" style={{objectFit: 'cover'}} />
+			<Box height={1} style={{borderRadius: 24, overflow: 'hidden'}}>
+				<img
+					src={data[index].url}
+					width="100%"
+					height="100%"
+					alt="flow"
+					style={{objectFit: 'cover'}}
+				/>
 			</Box>
 			<Box zIndex="tooltip" className={classes.content}>
 				<Typography variant="h4" className={classes.title}>
-					Cuando
-					<br />
-					te ocurre a ti
+					{parse(data[index].title)}
 				</Typography>
-				<ButtonCustom variant="contained" component={Link} to={'/victima'} type="rounded">
+				<ButtonCustom variant="contained" component={Link} to={data[index].link} type="rounded">
 					<Typography className={classes.buttonText} variant="subtitle1">
 						Iniciar Formación
 					</Typography>
