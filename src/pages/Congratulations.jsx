@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
 import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
 import ContainerRounded from '../components/ContainerRounded';
 import headerImage from '../assets/1-2.png';
+import {useDispatch, useSelector} from 'react-redux';
+import {createUser} from '../duck';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -44,6 +46,19 @@ const useStyle = makeStyles((theme) => ({
 
 const Congratulations = () => {
 	const classes = useStyle();
+	const dispatch = useDispatch();
+	const {identifier} = useSelector((state) => state.data);
+
+	useEffect(() => {
+		dispatch(createUser());
+	}, [dispatch]);
+
+	const transform = () => {
+		const length = identifier.toString().length;
+		if (length === 6) return identifier.toString();
+		const zeros = '0'.repeat(5 - length);
+		return `${zeros}${identifier}`;
+	};
 
 	return (
 		<ContainerRounded noShadow topImage>
@@ -74,7 +89,7 @@ const Congratulations = () => {
 								alignItems="center"
 							>
 								<Typography variant="h4" className={classes.counterText}>
-									00578
+									{transform()}
 								</Typography>
 							</Box>
 						</Grid>

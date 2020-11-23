@@ -60,7 +60,6 @@ const Flow = () => {
 			header={header}
 			index={index}
 			setIndex={setIndex}
-			bgColor={index === 0 ? 'black' : 'white'}
 			length={data.length}
 		>
 			<Box height={1} style={{borderRadius: 24, overflow: 'hidden'}}>

@@ -9,10 +9,12 @@ import {
 	MenuItem,
 	OutlinedInput
 } from '@material-ui/core';
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState, useCallback} from 'react';
 import ButtonCustom from '../components/ButtonCustom';
 import Container from './../components/Container';
+import {useSelector, useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import {updateUser} from '../duck';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -60,12 +62,22 @@ const useOutlinedInputStyles = makeStyles((theme) => ({
 const Apply = () => {
 	const classes = useStyle();
 	const outlinedInputClasses = useOutlinedInputStyles();
+	const dispatch = useDispatch();
+	const {user} = useSelector((state) => state.data);
 
-	const [name, setName] = useState('');
-	const [age, setAge] = useState('');
-	const [sex, setSex] = useState('');
-	const [email, setEmail] = useState('');
-	const [sector, setSector] = useState('');
+	const [name, setName] = useState(user.name);
+	const [age, setAge] = useState(user.age);
+	const [sex, setSex] = useState(user.sex);
+	const [email, setEmail] = useState(user.email);
+	const [sector, setSector] = useState(user.sector);
+
+	const history = useHistory();
+	const onNext = useCallback(() => history.push(`/certificado/${name}`), [history, name]);
+
+	const handleNext = () => {
+		dispatch(updateUser({name, age, sex, email, sector}));
+		onNext();
+	};
 
 	const checkEmail = (str) =>
 		typeof str === 'string' && /^[\w+\d+._]+\@[\w+\d+_+]+\.[\w+\d+._]{2,8}$/.test(str);
@@ -170,8 +182,7 @@ const Apply = () => {
 							disabled={disabled}
 							fullWidth
 							style={{borderRadius: 24}}
-							component={Link}
-							to={`/certificado/${name}`}
+							onClick={handleNext}
 						>
 							<Box display="flex" justifyContent="center">
 								<Typography

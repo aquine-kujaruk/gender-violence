@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {ThemeProvider} from '@material-ui/core/styles';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {Provider} from 'react-redux';
 import theme from './theme';
 import Navbar from './components/Navbar';
 import Menu from './components/Menu';
@@ -28,89 +29,96 @@ import WitnessInfoIntro from './pages/WitnessInfoIntro';
 import WitnessInfo from './pages/WitnessInfo';
 import Messages from './pages/Messages';
 import Emergency from './pages/Emergency';
+import generateStore from './store';
 
 function App() {
 	const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+	const store = generateStore();
+
 	return (
 		<ThemeProvider theme={theme}>
-			<Router>
-				<Navbar open={isOpenMenu} setOpen={setIsOpenMenu} />
-				<Menu open={isOpenMenu} setOpen={setIsOpenMenu} />
-				<Switch>
-					<Route exact path="/numeros-emergencia">
-						<Emergency />
-					</Route>
-					<Route exact path="/mensajes">
-						<Messages />
-					</Route>
-					<Route exact path="/solicitud">
-						<Apply />
-					</Route>
-					<Route path="/certificado/:fullname">
-						<Certificate />
-					</Route>
-					<Route exact path="/final">
-						<Final />
-					</Route>
-					<Route exact path="/felicitaciones">
-						<Congratulations />
-					</Route>
-					<Route exact path="/5d/info">
-						<Action5DInfo />
-					</Route>
-					<Route exact path="/5d">
-						<Action5D />
-					</Route>
-					<Route exact path="/detenlo/siguiente">
-						<StopAbuseNext />
-					</Route>
-					<Route exact path="/detenlo/elegir-caso">
-						<StopAbuseCases />
-					</Route>
-					<Route exact path="/detenlo/intro">
-						<StopAbuseIntro />
-					</Route>
-					<Route exact path="/detenlo">
-						<StopAbuse />
-					</Route>
-					<Route exact path="/testigo/info/intro">
-						<WitnessInfoIntro />
-					</Route>
-					<Route exact path="/testigo/info">
-						<WitnessInfo />
-					</Route>
-					<Route exact path="/testigo">
-						<Witness />
-					</Route>
-					<Route exact path="/victima/ver-testigo">
-						<VictimToWitness />
-					</Route>
-					<Route exact path="/victima/accion/intro">
-						<VictimActionIntro />
-					</Route>
-					<Route exact path="/victima/accion">
-						<VictimAction />
-					</Route>
-					<Route exact path="/victima/info/intro">
-						<VictimInfoIntro />
-					</Route>
-					<Route exact path="/victima/info">
-						<VictimInfo />
-					</Route>
-					<Route exact path="/victima/tipo">
-						<VictimType />
-					</Route>
-					<Route exact path="/victima/introduccion">
-						<VictimIntroduction />
-					</Route>
-					<Route exact path="/victima">
-						<Victim />
-					</Route>
-					<Route exact path="/">
-						<Home />
-					</Route>
-				</Switch>
-			</Router>
+			<Provider store={store}>
+				{' '}
+				<Router>
+					<Navbar open={isOpenMenu} setOpen={setIsOpenMenu} />
+					<Menu open={isOpenMenu} setOpen={setIsOpenMenu} />
+					<Switch>
+						<Route exact path="/numeros-emergencia">
+							<Emergency />
+						</Route>
+						<Route exact path="/mensajes">
+							<Messages />
+						</Route>
+						<Route exact path="/solicitud">
+							<Apply />
+						</Route>
+						<Route path="/certificado/:fullname">
+							<Certificate />
+						</Route>
+						<Route exact path="/final">
+							<Final />
+						</Route>
+						<Route exact path="/felicitaciones">
+							<Congratulations />
+						</Route>
+						<Route exact path="/5d/info">
+							<Action5DInfo />
+						</Route>
+						<Route exact path="/5d">
+							<Action5D />
+						</Route>
+						<Route exact path="/detenlo/siguiente">
+							<StopAbuseNext />
+						</Route>
+						<Route exact path="/detenlo/elegir-caso">
+							<StopAbuseCases />
+						</Route>
+						<Route exact path="/detenlo/intro">
+							<StopAbuseIntro />
+						</Route>
+						<Route exact path="/detenlo">
+							<StopAbuse />
+						</Route>
+						<Route exact path="/testigo/info/intro">
+							<WitnessInfoIntro />
+						</Route>
+						<Route exact path="/testigo/info">
+							<WitnessInfo />
+						</Route>
+						<Route exact path="/testigo">
+							<Witness />
+						</Route>
+						<Route exact path="/victima/ver-testigo">
+							<VictimToWitness />
+						</Route>
+						<Route exact path="/victima/accion/intro">
+							<VictimActionIntro />
+						</Route>
+						<Route exact path="/victima/accion">
+							<VictimAction />
+						</Route>
+						<Route exact path="/victima/info/intro">
+							<VictimInfoIntro />
+						</Route>
+						<Route exact path="/victima/info">
+							<VictimInfo />
+						</Route>
+						<Route exact path="/victima/tipo">
+							<VictimType />
+						</Route>
+						<Route exact path="/victima/introduccion">
+							<VictimIntroduction />
+						</Route>
+						<Route exact path="/victima">
+							<Victim />
+						</Route>
+						<Route exact path="/">
+							<Home />
+						</Route>
+					</Switch>
+				</Router>
+			</Provider>
 		</ThemeProvider>
 	);
 }

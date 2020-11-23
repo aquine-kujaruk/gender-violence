@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
-import ButtonCustom from '../components/ButtonCustom';
-import {Link} from 'react-router-dom';
 import ContainerRounded from '../components/ContainerRounded';
 import headerImage from '../assets/1-2.png';
 import * as parse from 'html-react-parser';

@@ -89,7 +89,7 @@ const VictimInfo = ({link = '/victima/accion/intro'}) => {
 		<Container>
 			<Grid className={classes.root} container>
 				<Grid item xs={12}>
-					<Box height={0.65} width={1} position="relative" className={classes.hero}>
+					<Box height={0.55} width={1} position="relative" className={classes.hero}>
 						<Box
 							position="absolute"
 							height="4.5rem"
@@ -148,12 +148,12 @@ const VictimInfo = ({link = '/victima/accion/intro'}) => {
 					</Box>
 					<CustomSlide ref={slider2Ref} index={index} setIndex={setIndex} length={data.length}>
 						<Box height={0.25} width={1} display="flex" justifyContent="center" alignItems="center">
-							<Typography className={classes.textBody} variant="body2">
+							<Typography className={classes.textBody} variant="h6">
 								{data[index].text}
 							</Typography>
 						</Box>
 					</CustomSlide>
-					<Box height={0.06} width={1} display="flex" justifyContent="center" alignItems="center">
+					<Box height={0.12} width={1} display="flex" justifyContent="center" alignItems="center">
 						{index !== 4 ? (
 							<ButtonCustom
 								style={{borderColor: 'white'}}
@@ -176,7 +176,7 @@ const VictimInfo = ({link = '/victima/accion/intro'}) => {
 							</ButtonCustom>
 						)}
 					</Box>
-					<Box height={0.04} width={1}>
+					<Box height={0.08} width={1}>
 						<Dots selected={index} length={data.length} bgColor="white" />
 					</Box>
 				</Grid>

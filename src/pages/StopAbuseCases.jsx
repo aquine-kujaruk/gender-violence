@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {
 	Box,
 	Checkbox,
@@ -10,9 +10,11 @@ import {
 	Typography
 } from '@material-ui/core';
 import ButtonCustom from '../components/ButtonCustom';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import ContainerRounded from './../components/ContainerRounded';
 import longArrow from '../assets/long-arrow.png';
+import {setSelected} from '../duck';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -70,12 +72,21 @@ const data = [
 
 const StopAbuseCases = () => {
 	const classes = useStyle();
+	const dispatch = useDispatch();
 
 	const [checked, setChecked] = useState([]);
+
+	const history = useHistory();
+	const onNext = useCallback(() => history.push('/detenlo/siguiente'), [history]);
 
 	const handleChange = (index) => {
 		if (checked.includes(index)) setChecked(checked.filter((item) => item !== index));
 		else setChecked([...checked, index]);
+	};
+
+	const handleNext = () => {
+		dispatch(setSelected(checked));
+		onNext();
 	};
 
 	return (
@@ -129,8 +140,7 @@ const StopAbuseCases = () => {
 							style={{borderColor: 'white'}}
 							variant="outlined"
 							type="outlined"
-							component={Link}
-							to={'/detenlo/siguiente'}
+							onClick={handleNext}
 						>
 							<img alt="" className={classes.buttonImageIcon} src={longArrow} />
 						</ButtonCustom>

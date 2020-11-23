@@ -1,10 +1,6 @@
 import React from 'react';
-import {Box, Grid, makeStyles, Typography, List, ListItem, ListItemText} from '@material-ui/core';
-import ButtonCustom from '../components/ButtonCustom';
-import {Link} from 'react-router-dom';
+import {Box, makeStyles, Typography, List, ListItem, ListItemText} from '@material-ui/core';
 import ContainerRounded from '../components/ContainerRounded';
-import image5d from '../assets/big-5d.png';
-import longArrow from '../assets/long-arrow.png';
 
 const useStyle = makeStyles((theme) => ({
 	list: {

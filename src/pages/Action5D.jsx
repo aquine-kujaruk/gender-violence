@@ -58,15 +58,18 @@ const Action5D = () => {
 				>
 					<Grid className={classes.root} container direction="row" justify="space-between">
 						<Grid item xs={12} style={{height: '70%'}}>
-							<Box
-								width={1}
-								height={1}
-								ml="20%"
-								display="flex"
-								justifyContent="center"
-								alignItems="center"
-							>
-								<img alt="" className={classes.imageHeader} src={image5d} />
+							<Box width={1} height={1} display="flex" justifyContent="center" alignItems="center">
+								<Typography
+									className={classes.text}
+									style={{
+										fontFamily: "'PT Sans', sans-serif",
+										fontSize: '13rem',
+										transform: 'scaleY(1.5)'
+									}}
+									variant="h1"
+								>
+									5D
+								</Typography>
 							</Box>
 						</Grid>
 						<Grid item xs={12}>
