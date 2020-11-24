@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import ButtonCustom from '../components/ButtonCustom';
 import Container from './../components/Container';
 import longArrow from '../assets/long-arrow-white.png';
+import {useSelector} from 'react-redux';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -26,21 +27,35 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
+const data = {
+	es: {
+		text1: 'Muchos de nosotros no somos capaces de actuar.',
+		text2: 'Aunque nos gustaría.',
+		text3: 'Pero muchas veces nos paralizamos, sin saber qué hacer.'
+	},
+	ki: {
+		text1: 'Tawkami tiyanchik mana imatapash rurayta ushakkuna',
+		text2: 'Munakushpapash',
+		text3: 'Ashtawankariy manchariwan kasilla sakirinchik, mana imatapash  rurayta ushashpa.'
+	}
+};
+
 const StopAbuseIntro = () => {
 	const classes = useStyle();
+	const {language} = useSelector((state) => state.data);
 	return (
 		<Container>
 			<Grid className={classes.root} container direction="row" justify="space-between">
 				<Grid item xs={12} style={{height: '20%'}} />
 				<Grid item xs={12}>
 					<Typography className={classes.text} variant="h4">
-						Muchos de nosotros no somos capaces de actuar.
+						{data[language].text1}
 						<br />
 						<br />
-						Aunque nos gustaría.
-						<Typography className={classes.textBody} variant="subtitle1">
-							Pero muchas veces nos paralizamos, sin saber qué hacer.
-						</Typography>
+						{data[language].text2}
+					</Typography>
+					<Typography className={classes.textBody} variant="subtitle1">
+						{data[language].text3}
 					</Typography>
 				</Grid>
 				<Grid xs={12} item>

@@ -9,6 +9,8 @@ import logo2 from '../assets/logo-2.png';
 import logo3 from '../assets/logo-3.png';
 import ComponentToPdf from './../components/ComponentToPdf';
 import {useHistory} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {setLoader} from '../duck';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -62,6 +64,8 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Certificate = ({noButton}) => {
+	const dispatch = useDispatch();
+
 	const {fullname = ''} = useParams();
 	const name = fullname.split(' ').splice(0, 2).join(' ');
 
@@ -73,10 +77,15 @@ const Certificate = ({noButton}) => {
 	const [status, setStatus] = useState(null);
 
 	useEffect(() => {
+		dispatch(setLoader(download));
+	}, [download, dispatch]);
+
+	useEffect(() => {
 		if (['success', 'error'].includes(status)) {
+			dispatch(setLoader(false));
 			handleOnClick();
 		}
-	}, [status, handleOnClick]);
+	}, [status, handleOnClick, download, dispatch]);
 
 	const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 	const months = [

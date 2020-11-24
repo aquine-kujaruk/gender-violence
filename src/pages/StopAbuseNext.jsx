@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import ButtonCustom from '../components/ButtonCustom';
 import Container from './../components/Container';
 import longArrow from '../assets/long-arrow-white.png';
+import {useSelector} from 'react-redux';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -27,14 +28,41 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
+const data = {
+	es: {
+		text1: 'Lo entendemos.',
+		text2: `
+			De hecho, muchos de nosotros no sabe qué hacer ante una situación de violencia de
+			género. Y en el mayor de los casos se considera arriesgado el hecho de intervenir. Por
+			ello hemos reunido un conjunto de diferentes acciones diseñadas para evitar
+			consecuencias negativas para ti o para la víctima. Las acciones menos directas son
+			recomendables si no estás seguro.
+		`,
+		text3: '¿Estás preparado/a para ponerlas en práctica?',
+		buttonText: 'Estoy lista·o'
+	},
+	ki: {
+		text1: 'Hamutanchikmi.',
+		text2: `
+		Shinami kan, tawkami mana imata ruranatapash yachanchik pitapash llakichikukpi. 
+		Ashtawankari ñukanchikpa allí kaytara wakllichinkata yuyarin.
+		Por ello hemos reunido un conjunto de diferentes acciones diseñadas para evitar 
+		consecuencias negativas para ti o para la víctima. Las acciones menos directas son recomendables si no estás seguro.
+		`,
+		text3: '¿Ña yuyaywanchu kanki kay ruraykunata paktachinkapak?',
+		buttonText: 'Ña kani'
+	}
+};
+
 const StopAbuseNext = () => {
 	const classes = useStyle();
+	const {language} = useSelector((state) => state.data);
 	return (
 		<Container
 			button={
 				<ButtonCustom variant="contained" component={Link} to={'/5d'} type="circular">
 					<Typography variant="subtitle1" style={{color: 'white'}}>
-						Estoy lista·o
+						{data[language].buttonText}
 					</Typography>
 					<img alt="" className={classes.buttonImageIcon} src={longArrow} />
 				</ButtonCustom>
@@ -45,21 +73,17 @@ const StopAbuseNext = () => {
 			<Grid className={classes.root} container direction="row" justify="space-between">
 				<Grid item xs={12}>
 					<Typography className={classes.text} variant="h4">
-						Lo entendemos.
+						{data[language].text1}
 					</Typography>
 				</Grid>
 				<Grid item xs={12}>
 					<Typography className={classes.textBody} variant="subtitle1">
-						De hecho, muchos de nosotros no sabe qué hacer ante una situación de violencia de
-						género. Y en el mayor de los casos se considera arriesgado el hecho de intervenir. Por
-						ello hemos reunido un conjunto de diferentes acciones diseñadas para evitar
-						consecuencias negativas para ti o para la víctima. Las acciones menos directas son
-						recomendables si no estás seguro.
+						{data[language].text2}
 					</Typography>
 				</Grid>
 				<Grid item xs={12}>
 					<Typography className={classes.textBody} variant="subtitle1">
-						<strong>¿Estás preparado/a para ponerlas en práctica?</strong>
+						<strong>{data[language].text3}</strong>
 					</Typography>
 				</Grid>
 			</Grid>

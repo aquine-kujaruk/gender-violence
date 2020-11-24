@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ThemeProvider} from '@material-ui/core/styles';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
@@ -30,19 +30,18 @@ import WitnessInfo from './pages/WitnessInfo';
 import Messages from './pages/Messages';
 import Emergency from './pages/Emergency';
 import generateStore from './store';
+import Loader from './components/Loader';
 
 function App() {
-	const [isOpenMenu, setIsOpenMenu] = useState(false);
-
 	const store = generateStore();
 
 	return (
 		<ThemeProvider theme={theme}>
 			<Provider store={store}>
-				{' '}
 				<Router>
-					<Navbar open={isOpenMenu} setOpen={setIsOpenMenu} />
-					<Menu open={isOpenMenu} setOpen={setIsOpenMenu} />
+					<Navbar />
+					<Menu />
+					<Loader />
 					<Switch>
 						<Route exact path="/numeros-emergencia">
 							<Emergency />

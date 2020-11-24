@@ -6,6 +6,8 @@ import {FacebookShareButton, WhatsappShareButton} from 'react-share';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {useSelector} from 'react-redux';
+import * as parse from 'html-react-parser';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -45,20 +47,32 @@ const useStyle = makeStyles((theme) => ({
 const Final = () => {
 	const classes = useStyle();
 	const [copied, setCopied] = useState(false);
+	const {language} = useSelector((state) => state.data);
+
+	const data = {
+		es: {
+			text1: '¡Gracias por estar aquí!',
+			text2: parse('¡Compártelo! <br /> Quizá alguien más necesita esta información'),
+			textButton: copied ? 'Link copiado' : 'Copiar link'
+		},
+		ki: {
+			text1: '¡Yupaychanchik kaypi kaymanta!',
+			text2: parse('¡Purichiy! <br /> Pipash kay willaykunata mutsunakunkami'),
+			textButton: copied ? 'Link copiado' : 'Copiar link'
+		}
+	};
 
 	return (
 		<Container>
 			<Grid className={classes.root} container direction="row" justify="space-between">
 				<Grid item xs={12}>
-					<Typography className={classes.text} variant="h3">
-						¡Gracias por estar aquí!
+					<Typography className={classes.text} variant={language === 'es' ? 'h3' : 'h4'}>
+						{data[language].text1}
 					</Typography>
 				</Grid>
 				<Grid item xs={12}>
 					<Typography className={classes.textBody} variant="h6">
-						¡Compártelo!
-						<br />
-						Quizá alguien más necesita esta información
+						{data[language].text2}
 					</Typography>
 				</Grid>
 				<Grid item xs={12}>
@@ -98,7 +112,7 @@ const Final = () => {
 										className={`${classes.buttonText} ${copied && 'copied'}`}
 										variant="h6"
 									>
-										{copied ? 'Link copiado' : 'Copiar link'}
+										{data[language].textButton}
 									</Typography>
 								</Box>
 							</ButtonCustom>

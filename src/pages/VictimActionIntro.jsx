@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import ButtonCustom from '../components/ButtonCustom';
 import Container from './../components/Container';
 import longArrow from '../assets/long-arrow-white.png';
+import {useSelector} from 'react-redux';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -15,34 +16,36 @@ const useStyle = makeStyles((theme) => ({
 		fontWeight: 'bold',
 		color: 'white'
 	},
+	buttonImageIcon: {
+		width: '1.8rem',
+		paddingLeft: 4
+	},
 	buttonText: {
-		height: '1.4rem',
 		fontWeight: 'bold',
 		fontSize: '0.9rem',
 		color: 'white',
 		textTransform: 'none'
-	},
-	buttonImageIcon: {
-		width: '1.8rem',
-		transform: 'scaleY(0.6)',
-		paddingLeft: 16
 	}
 }));
 
 const VictimActionIntro = () => {
 	const classes = useStyle();
+	const {language} = useSelector((state) => state.data);
 	return (
 		<Container>
 			<Grid className={classes.root} container direction="row" justify="space-between">
 				<Grid item xs={12}>
-					<Typography className={classes.text} variant="h4">
-						Ahora que tienes esta información puedes identificar situaciones de violencia en tu
-						entorno
+					<Typography className={classes.text} variant={language === 'es' ? 'h4' : 'h5'}>
+						{language === 'es'
+							? 'Ahora que tienes esta información puedes identificar situaciones de violencia en tu entorno'
+							: 'Ña kay willaykunata kunanka yachanki, shinaka  ña ushankichu ima llakichikunata kawsashkata willanata'}
 					</Typography>
 				</Grid>
 				<Grid item xs={12}>
-					<Typography className={classes.text} variant="h4">
-						Pero ¿Qué puedes hacer al respecto?
+					<Typography className={classes.text} variant={language === 'es' ? 'h4' : 'h5'}>
+						{language === 'es'
+							? 'Pero ¿Qué puedes hacer al respecto?'
+							: 'Shinapash, imatatak kay hawa rurayta ushanki'}
 					</Typography>
 				</Grid>
 				<Grid xs={12} item>
@@ -57,12 +60,20 @@ const VictimActionIntro = () => {
 									component={Link}
 									to={'/victima/accion'}
 								>
-									<Box display="flex" justifyContent="center">
-										<Typography className={classes.buttonText} variant="subtitle1">
-											Veamos que puedes hacer
-										</Typography>
-										<img alt="" className={classes.buttonImageIcon} src={longArrow} />
-									</Box>
+									<Grid container>
+										<Grid item xs={10}>
+											<Typography className={classes.buttonText} variant="subtitle1">
+												{language === 'es'
+													? 'Veamos que puedes hacer'
+													: 'Rikushun imatami rurayta ushanki'}
+											</Typography>
+										</Grid>
+										<Grid item xs={2}>
+											<Box height={1} display="flex" justifyContent="center" alignItems="center">
+												<img alt="" className={classes.buttonImageIcon} src={longArrow} />
+											</Box>
+										</Grid>
+									</Grid>
 								</ButtonCustom>
 							</Box>
 						</Grid>

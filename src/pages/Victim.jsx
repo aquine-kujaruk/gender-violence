@@ -3,6 +3,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import ButtonCustom from '../components/ButtonCustom';
 import Container from './../components/Container';
+import {useSelector} from 'react-redux';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -17,6 +18,23 @@ const useStyle = makeStyles((theme) => ({
 
 const Victim = () => {
 	const classes = useStyle();
+	const {language} = useSelector((state) => state.data);
+
+	const data = {
+		es: {
+			text1: 'Acabas de dar un paso muy importante',
+			text2:
+				'Estás aquí, en un espacio en el que encontrarás la ayuda y la fuerza para combatir la violencia de género.',
+			buttonText: 'Estoy lista·o'
+		},
+		ki: {
+			text1: 'Ña allipacha rurayta paktachikunki.',
+			text2:
+				'Kaypi kanki kay kushkapi tarinki yanapayta  shinallatak ashtawan sinchi yuyayta hapishpa mana warmikunata llakichikuna tiyachun.',
+			buttonText: 'Ña kani'
+		}
+	};
+
 	return (
 		<Container
 			uri="/victima/introduccion"
@@ -28,7 +46,7 @@ const Victim = () => {
 					type="circular"
 				>
 					<Typography variant="subtitle1" style={{color: 'white'}}>
-						Estoy lista·o
+						{data[language].buttonText}
 					</Typography>
 				</ButtonCustom>
 			}
@@ -42,14 +60,21 @@ const Victim = () => {
 				alignItems="center"
 			>
 				<Grid item>
-					<Typography className={classes.text} variant="h4">
-						Acabas de dar un paso muy importante
+					<Typography
+						className={classes.text}
+						style={language === 'ki' ? {fontSize: '1.75rem'} : {}}
+						variant="h4"
+					>
+						{data[language].text1}
 					</Typography>
 				</Grid>
 				<Grid item>
-					<Typography className={classes.text} variant="h4">
-						Estás aquí, en un espacio en el que encontrarás la ayuda y la fuerza para combatir la
-						violencia de género.
+					<Typography
+						className={classes.text}
+						style={language === 'ki' ? {fontSize: '1.75rem'} : {}}
+						variant="h4"
+					>
+						{data[language].text2}
 					</Typography>
 				</Grid>
 			</Grid>

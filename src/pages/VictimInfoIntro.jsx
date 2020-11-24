@@ -6,6 +6,7 @@ import * as parse from 'html-react-parser';
 import withWidth, {isWidthUp} from '@material-ui/core/withWidth';
 import ContainerRounded from './../components/ContainerRounded';
 import longArrow from '../assets/long-arrow-white.png';
+import {useSelector} from 'react-redux';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -36,23 +37,30 @@ const useStyle = makeStyles((theme) => ({
 
 const VictimInfoIntro = ({link = '/victima/info', width}) => {
 	const classes = useStyle();
+	const {language} = useSelector((state) => state.data);
 
 	return (
 		<ContainerRounded>
 			<Grid className={classes.root} container direction="row" justify="space-between">
 				<Grid item xs={12}>
-					<Typography className={classes.text} variant="h4">
-						{isWidthUp('sm', width)
-							? parse('Lamentablemente ocurre todos los días, en todas partes')
-							: parse('Lamentable- <br /> mente ocurre todos los días, en todas partes')}
+					<Typography className={classes.text} variant="h5">
+						{language === 'es'
+							? isWidthUp('sm', width)
+								? parse('Lamentablemente ocurre todos los días, en todas partes')
+								: parse('Lamentable- <br /> mente ocurre todos los días, en todas partes')
+							: 'Llakipachami, tukuy punchakuna  maypi kashkpapashmi shina kan.'}
 					</Typography>
 				</Grid>
 				<Grid xs={12} item>
 					<Typography className={classes.textBody} variant="body2">
-						<strong>Se considera violencia de género</strong> cualquier acto violento o agresión,
+						{language === 'es'
+							? parse(`<strong>Se considera violencia de género</strong> cualquier acto violento o agresión,
 						basados en una situación de desigualdad en el marco de un sistema de relaciones de
 						dominación de los hombres sobre las mujeres que tenga o pueda tener como consecuencia un
-						daño físico, sexual o psicológico
+						daño físico, sexual o psicológico`)
+							: `Violencia de género shimika kanmi ima llakichikunapash, shuk ashtawan yalli kayta rikuchimi kan. 
+							karikuna munashkata paktachimi kan,  warmikunata washanchishpa, makashpa, saltiyashpa, 
+							rimashpapash kakmi kan.`}
 					</Typography>
 				</Grid>
 				<Grid xs={12} item>
@@ -66,7 +74,9 @@ const VictimInfoIntro = ({link = '/victima/info', width}) => {
 							to={link}
 						>
 							<Typography className={classes.buttonText} variant="subtitle1">
-								Queremos enseñarte un poco más sobre esto
+								{language === 'es'
+									? 'Queremos enseñarte un poco más sobre esto'
+									: 'Kikinma ashtawan yachachinkapak munanchik'}
 							</Typography>
 							<img alt="" className={classes.buttonImageIcon} src={longArrow} />
 						</ButtonCustom>

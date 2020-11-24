@@ -25,11 +25,11 @@ const useStyle = makeStyles((theme) => ({
 		padding: '0 16px'
 	},
 	buttonText: {
-		height: '1.4rem',
 		fontWeight: 'bold',
 		fontSize: '0.9rem',
 		color: '#ff5f2b',
-		textTransform: 'none'
+		textTransform: 'none',
+		textAlign: 'center'
 	},
 	button: {
 		borderColor: '#ff5f2b'
@@ -44,10 +44,25 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
+const data = {
+	es: {
+		text1: '¡Felicitaciones!',
+		text2: 'Ahora formas parte de una comunidad de personas que combate la violencia de género.',
+		button1: 'Solicitar Certificado',
+		button2: 'Finalizar Formación'
+	},
+	ki: {
+		text1: '¡Huyayay!',
+		text2: 'Kunanka ñami kanki tawkapura violencia de género mana tiyachun',
+		button1: 'Yachakushka phankata mañay',
+		button2: 'Yachakuyta illachiy'
+	}
+};
+
 const Congratulations = () => {
 	const classes = useStyle();
 	const dispatch = useDispatch();
-	const {identifier} = useSelector((state) => state.data);
+	const {identifier, language} = useSelector((state) => state.data);
 
 	useEffect(() => {
 		dispatch(createUser());
@@ -78,7 +93,7 @@ const Congratulations = () => {
 					<Grid className={classes.root} container direction="row" justify="space-between">
 						<Grid item xs={12}>
 							<Typography className={classes.text} variant="h4">
-								¡Felicitaciones!
+								{data[language].text1}
 							</Typography>
 						</Grid>
 						<Grid item xs={12}>
@@ -96,10 +111,7 @@ const Congratulations = () => {
 						<Grid item xs={12}>
 							<Typography className={classes.textBody} variant="h6">
 								<span className="primary-color">
-									<strong>
-										Ahora formas parte de una comunidad de personas que combate la violencia de
-										género.
-									</strong>
+									<strong>{data[language].text2}</strong>
 								</span>
 							</Typography>
 						</Grid>
@@ -117,7 +129,7 @@ const Congratulations = () => {
 										>
 											<Box display="flex" justifyContent="center">
 												<Typography className={classes.buttonText} variant="subtitle1">
-													Solicitar Certificado
+													{data[language].button1}
 												</Typography>
 											</Box>
 										</ButtonCustom>
@@ -135,7 +147,7 @@ const Congratulations = () => {
 										>
 											<Box display="flex" justifyContent="center">
 												<Typography className={classes.buttonText} variant="subtitle1">
-													Finalizar Formación
+													{data[language].button2}
 												</Typography>
 											</Box>
 										</ButtonCustom>

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import ButtonCustom from '../components/ButtonCustom';
 import Container from './../components/Container';
 import longArrow from '../assets/long-arrow-white.png';
+import {useSelector} from 'react-redux';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -30,13 +31,16 @@ const useStyle = makeStyles((theme) => ({
 
 const VictimToWitness = () => {
 	const classes = useStyle();
+	const {language} = useSelector((state) => state.data);
 	return (
 		<Container>
 			<Grid className={classes.root} container direction="row" justify="space-evenly">
 				<Grid item xs={12}>
 					<Box height={1} width={1} display="flex" justifyContent="center" alignItems="center">
 						<Typography className={classes.text} variant="h3">
-							Ahora mira lo que puedes hacer si eres un testigo
+							{language === 'es'
+								? 'Ahora mira lo que puedes hacer si eres un testigo'
+								: 'Kunanka rikushun imatakmi paktachita ushanki kikin rikuk kashpa'}
 						</Typography>
 					</Box>
 				</Grid>
@@ -52,7 +56,7 @@ const VictimToWitness = () => {
 						>
 							<Box display="flex" justifyContent="center">
 								<Typography className={classes.buttonText} variant="subtitle1">
-									Estoy lista·o
+									{language === 'es' ? 'Estoy lista·o' : 'Ña kani'}
 								</Typography>
 								<img alt="" className={classes.buttonImageIcon} src={longArrow} />
 							</Box>

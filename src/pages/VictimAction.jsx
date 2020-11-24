@@ -7,6 +7,7 @@ import longArrow from '../assets/long-arrow.png';
 import firstImage from '../assets/4-1.jpg';
 import secondImage from '../assets/5-1.jpg';
 import VerticalSlider from './../components/VerticalSlider';
+import {useSelector} from 'react-redux';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -152,49 +153,85 @@ const Content = (props) => {
 const VictimAction = () => {
 	const classes = useStyle();
 	const childRef = useRef();
+	const {language} = useSelector((state) => state.data);
 
 	const onNext = () => {
 		childRef.current.onNext();
 	};
 
-	const data = [
-		{
-			title: 'Dí algo',
-			image: firstImage,
-			text: `
-                Dile a la persona que te acosa o pretende ser violenta que pare de hacerlo, que se
-                aleje de ti o pregúntale por qué te hace sentir incómoda.
-                <br /> Una vez que establezcas los límites, no mantengas un diálogo con ella, en ese
-                momento no estará predispuesta a aprender.
-                <br />
-                <span class="primary-color">Ponte a salvo.</span>
-            `
-		},
-		{
-			title: 'Pide ayuda',
-			image: secondImage,
-			text: `
-                <span class="primary-color">
-                    Puedes pedir ayuda a alguien que se encuentre cerca.
-                </span>
-                <br />
-                Si te encuentras rodeada de gente, pero nadie vio lo sucedido, cuéntales exactamente
-                lo que el acosador dijo o hizo y describe cómo va vestido para que los testigos puedan
-                identificarlo.
-                <br />
-                Puedes pedirles que se queden contigo un rato o que contacten con un representante de
-                la autoridad.`
-		},
-		{
-			title: 'Grábalo',
-			image: firstImage,
-			text: `
-                Si te sientes a salvo, piensa en hacer una foto o un vídeo de lo que está ocurriendo,
-                o pídele a un testigo que lo haga. <br />
-                Asegúrate de grabar claramente la ubicación y al acosador. Consulta los recursos
-                legales locales para ver cómo puedes denunciar el acoso utilizando tu grabación.`
-		}
-	];
+	const data = {
+		es: [
+			{
+				title: 'Dí algo',
+				image: firstImage,
+				text: `
+					Dile a la persona que te acosa o pretende ser violenta que pare de hacerlo, que se
+					aleje de ti o pregúntale por qué te hace sentir incómoda.
+					<br /> Una vez que establezcas los límites, no mantengas un diálogo con ella, en ese
+					momento no estará predispuesta a aprender.
+					<br />
+					<span class="primary-color">Ponte a salvo.</span>
+				`
+			},
+			{
+				title: 'Pide ayuda',
+				image: secondImage,
+				text: `
+					<span class="primary-color">
+						Puedes pedir ayuda a alguien que se encuentre cerca.
+					</span>
+					<br />
+					Si te encuentras rodeada de gente, pero nadie vio lo sucedido, cuéntales exactamente
+					lo que el acosador dijo o hizo y describe cómo va vestido para que los testigos puedan
+					identificarlo.
+					<br />
+					Puedes pedirles que se queden contigo un rato o que contacten con un representante de
+					la autoridad.`
+			},
+			{
+				title: 'Grábalo',
+				image: firstImage,
+				text: `
+					Si te sientes a salvo, piensa en hacer una foto o un vídeo de lo que está ocurriendo,
+					o pídele a un testigo que lo haga. <br />
+					Asegúrate de grabar claramente la ubicación y al acosador. Consulta los recursos
+					legales locales para ver cómo puedes denunciar el acoso utilizando tu grabación.`
+			}
+		],
+		ki: [
+			{
+				title: 'Imatapash mi',
+				image: firstImage,
+				text: `
+					Pipash kikinta manllachikpi mana  kashpaka nimanta llakichikrikukpika mana llakichichu munamichu ni, karuyay ni, mana kashpaka imashpatak katiriyanki ni.
+					<br /> 
+					Ña kikinpa yuyayta uyachishpaka, mana ña paywanka rimakuychu, chay pachapika mana imatapash yuyaywan hapinkachu.
+					<br />
+					<span class="primary-color">Kishpirishka kay</span>
+				`
+			},
+			{
+				title: 'Yanapayta maskay',
+				image: secondImage,
+				text: `
+					<span class="primary-color">
+						Maykan kimiriya kakta yanapaway ni.
+					</span>
+					<br />
+					Muyunti tawka runakunapapi kakpipash, kaypunaka mana rikushka kakpika utsikalla willay chay mana alli runa ima nishkatapash, ima rurashkatapash. Willay ima shina churakushkakakta ña hapitukushpa kachun.
+					<br />
+					Kanwan kachun nishpa mañaylla, mana kashpaka chapak runakunata kayachipaychik nina kanki.`
+			},
+			{
+				title: 'Kuyurik-shuyuy',
+				image: firstImage,
+				text: `
+					Kishpirishka kashpaka utsikalla kikinpa willi-williwan shuyupay ima paktarikukta, mana kashpaka maykan kimiriyakta  rurapay ni.
+					<br />
+					Yuyaywan kay alli shuyukuna shukshikun, maypi kak pi manllachikukpash alli rikurichun.  Tapuy imashimi chay shuyushkakunawan denunciata ushankimi.`
+			}
+		]
+	};
 
 	return (
 		<VerticalSlider ref={childRef}>
@@ -211,12 +248,18 @@ const VictimAction = () => {
 							>
 								<Grid item xs={12}>
 									<Typography className={classes.title} variant="h5">
-										Si no te hace bien <br /> ¡Reacciona!
+										{language === 'es'
+											? parse('Si no te hace bien <br /> ¡Reacciona!')
+											: parse('Kanta mana alliyachikpika <br /> ¡Rikchariy!')}
 									</Typography>
 								</Grid>
 								<Grid xs={12} item>
 									<Typography className={classes.subtitle} variant="body1">
-										En caso de algun tipo de violencia esto <br /> es lo que puedes hacer
+										{language === 'es'
+											? parse(
+													'En caso de algun tipo de violencia esto <br /> es lo que puedes hacer'
+											  )
+											: parse('Ima llakichikuna tiyakpipash kay <br /> ruraykunata paktachiy')}
 									</Typography>
 								</Grid>
 							</Grid>
@@ -226,7 +269,7 @@ const VictimAction = () => {
 							bodyHeight={0.7}
 							imageHeight={0.35}
 							imageWidth={0.75}
-							info={data[0]}
+							info={data[language][0]}
 						/>
 					</Grid>
 				</Grid>
@@ -242,7 +285,7 @@ const VictimAction = () => {
 							imageWidth={0.85}
 							inverted
 							fullHeight
-							info={data[1]}
+							info={data[language][1]}
 						/>
 					</Grid>
 				</Grid>
@@ -258,7 +301,7 @@ const VictimAction = () => {
 							imageWidth={0.85}
 							isLast
 							fullHeight
-							info={data[2]}
+							info={data[language][2]}
 						/>
 					</Grid>
 				</Grid>

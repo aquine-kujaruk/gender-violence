@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {Box, makeStyles, Typography} from '@material-ui/core';
 import {useSelector, useDispatch} from 'react-redux';
+import * as parse from 'html-react-parser';
 import {getCount} from '../duck';
 
 const useStyle = makeStyles((theme) => ({
@@ -37,7 +38,7 @@ const NumberBox = ({number}) => {
 const FooterHome = () => {
 	const classes = useStyle();
 	const dispatch = useDispatch();
-	const {count} = useSelector((state) => state.data);
+	const {count, language} = useSelector((state) => state.data);
 
 	useEffect(() => {
 		dispatch(getCount());
@@ -48,6 +49,11 @@ const FooterHome = () => {
 		if (length === 6) return count.toString();
 		const zeros = '0'.repeat(5 - length);
 		return `${zeros}${count}`;
+	};
+
+	const data = {
+		es: 'Personas han <br /> completado la formación',
+		ki: 'Mashikuna yachakuyta <br />  paktachishkakuna'
 	};
 
 	return (
@@ -68,9 +74,7 @@ const FooterHome = () => {
 				))}
 			<Box ml="8px">
 				<Typography className={classes.number} variant="body2">
-					Personas han
-					<br />
-					completado la formación
+					{parse(data[language])}
 				</Typography>
 			</Box>
 		</Box>

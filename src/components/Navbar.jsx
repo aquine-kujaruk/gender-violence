@@ -5,6 +5,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import ToggleIcon from 'material-ui-toggle-icon';
 import logo from '../assets/logo.png';
 import {Link} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import {setMenuOpen} from './../duck';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -28,17 +30,24 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
-const Navbar = ({open, setOpen}) => {
+const Navbar = () => {
 	const classes = useStyle();
+	const dispatch = useDispatch();
+	const {menuOpen} = useSelector((state) => state.data);
 
 	return (
 		<div className={classes.root}>
 			<AppBar position="fixed" color="inherit" elevation={0}>
 				<Toolbar>
-					<IconButton edge="start" color="primary" aria-label="menu" onClick={() => setOpen(!open)}>
+					<IconButton
+						edge="start"
+						color="primary"
+						aria-label="menu"
+						onClick={() => dispatch(setMenuOpen(!menuOpen))}
+					>
 						<ToggleIcon
 							className={classes.toggleIcon}
-							on={open}
+							on={menuOpen}
 							onIcon={<CloseIcon />}
 							offIcon={<MenuIcon />}
 						/>

@@ -4,6 +4,8 @@ import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
 import ContainerRounded from '../components/ContainerRounded';
 import headerImage from '../assets/1-2.png';
+import {useSelector} from 'react-redux';
+import * as parse from 'html-react-parser';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -35,6 +37,7 @@ const useStyle = makeStyles((theme) => ({
 
 const StopAbuse = () => {
 	const classes = useStyle();
+	const {language} = useSelector((state) => state.data);
 
 	return (
 		<ContainerRounded noShadow topImage>
@@ -54,13 +57,18 @@ const StopAbuse = () => {
 					<Grid className={classes.root} container direction="row" justify="space-between">
 						<Grid item xs={12}>
 							<Typography className={classes.text} variant="h4">
-								Alguna vez haz hecho algo para detenerlo?
+								{language === 'es'
+									? 'Alguna vez haz hecho algo para detenerlo?'
+									: '¿Kikinka harkashkankichu mana llakichi katichu?'}
 							</Typography>
 						</Grid>
 						<Grid item xs={12}>
 							<Typography className={classes.textBody} variant="body1">
-								No pasa absolutamente nada <br /> si no lo has hecho.{' '}
-								<span className="primary-color">Sin presión.</span>
+								{language === 'es'
+									? parse(
+											'No pasa absolutamente nada <br /> si no lo has hecho.<span className="primary-color">Sin presión.</span>'
+									  )
+									: parse('Mana imapash kanchu na <br />  harkashka kashpa.')}
 							</Typography>
 						</Grid>
 						<Grid item xs={12}>
@@ -77,7 +85,7 @@ const StopAbuse = () => {
 										>
 											<Box display="flex" justifyContent="center">
 												<Typography className={classes.buttonText} variant="subtitle1">
-													Si
+													{language === 'es' ? 'Si' : 'Ari'}
 												</Typography>
 											</Box>
 										</ButtonCustom>
@@ -95,7 +103,7 @@ const StopAbuse = () => {
 										>
 											<Box display="flex" justifyContent="center">
 												<Typography className={classes.buttonText} variant="subtitle1">
-													No
+													{language === 'es' ? 'No' : 'Mana'}
 												</Typography>
 											</Box>
 										</ButtonCustom>

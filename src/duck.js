@@ -10,13 +10,19 @@ const initialData = {
 		sex: '',
 		email: '',
 		sector: ''
-	}
+	},
+	language: 'es',
+	menuOpen: false,
+	loader: false
 };
 
 const SET_SELECTED = 'SET_SELECTED';
 const GET_COUNT = 'GET_COUNT';
 const CREATE_USER = 'CREATE_USER';
 const UPDATE_USER = 'UPDATE_USER';
+const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
+const MENU_OPEN = 'MENU_OPEN';
+const SET_LOADER = 'SET_LOADER';
 
 export default function reducer(state = initialData, action) {
 	switch (action.type) {
@@ -28,6 +34,12 @@ export default function reducer(state = initialData, action) {
 			return {...state, selected: action.payload};
 		case UPDATE_USER:
 			return {...state, user: action.payload};
+		case CHANGE_LANGUAGE:
+			return {...state, language: action.payload};
+		case MENU_OPEN:
+			return {...state, menuOpen: action.payload};
+		case SET_LOADER:
+			return {...state, loader: action.payload};
 		default:
 			return state;
 	}
@@ -78,3 +90,21 @@ export const updateUser = (user) => async (dispatch, getState) => {
 		console.log(error);
 	}
 };
+
+export const setChangeLanguage = (language) => (dispatch) =>
+	dispatch({
+		type: CHANGE_LANGUAGE,
+		payload: language
+	});
+
+export const setMenuOpen = (status) => (dispatch) =>
+	dispatch({
+		type: MENU_OPEN,
+		payload: status
+	});
+
+export const setLoader = (status) => (dispatch) =>
+	dispatch({
+		type: SET_LOADER,
+		payload: status
+	});

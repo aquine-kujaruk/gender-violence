@@ -5,8 +5,10 @@ import {Link} from 'react-router-dom';
 import * as parse from 'html-react-parser';
 import ContainerRounded from './../components/ContainerRounded';
 import headerImage from '../assets/que-hacer.png';
+import headerImageKichwa from '../assets/que-hacer-kichwa.png';
 import slide1Image from '../assets/2-1.jpg';
 import slide2Image from '../assets/1-1.jpg';
+import {useSelector} from 'react-redux';
 
 const useStyle = makeStyles((theme) => ({
 	content: {
@@ -35,23 +37,44 @@ const useStyle = makeStyles((theme) => ({
 
 const Flow = () => {
 	const classes = useStyle();
+	const {language} = useSelector((state) => state.data);
 
 	const [index, setIndex] = useState(0);
 
-	const header = <img src={headerImage} alt="" className={classes.textImage} />;
+	const header = (
+		<img
+			src={language === 'es' ? headerImage : headerImageKichwa}
+			alt=""
+			className={classes.textImage}
+		/>
+	);
 
-	const data = [
-		{
-			title: 'Cuando <br /> te ocurre a ti',
-			url: slide1Image,
-			link: '/victima'
-		},
-		{
-			title: 'Cuando <br /> eres testigo',
-			url: slide2Image,
-			link: '/testigo'
-		}
-	];
+	const data = {
+		es: [
+			{
+				title: 'Cuando <br /> te ocurre a ti',
+				url: slide1Image,
+				link: '/victima'
+			},
+			{
+				title: 'Cuando <br /> eres testigo',
+				url: slide2Image,
+				link: '/testigo'
+			}
+		],
+		ki: [
+			{
+				title: 'Kikin <br /> llakichitukushpa',
+				url: slide1Image,
+				link: '/victima'
+			},
+			{
+				title: 'Kikin <br /> rikushka kashpa',
+				url: slide2Image,
+				link: '/testigo'
+			}
+		]
+	};
 
 	return (
 		<ContainerRounded
@@ -60,11 +83,11 @@ const Flow = () => {
 			header={header}
 			index={index}
 			setIndex={setIndex}
-			length={data.length}
+			length={data[language].length}
 		>
 			<Box height={1} style={{borderRadius: 24, overflow: 'hidden'}}>
 				<img
-					src={data[index].url}
+					src={data[language][index].url}
 					width="100%"
 					height="100%"
 					alt="flow"
@@ -73,11 +96,16 @@ const Flow = () => {
 			</Box>
 			<Box zIndex="tooltip" className={classes.content}>
 				<Typography variant="h4" className={classes.title}>
-					{parse(data[index].title)}
+					{parse(data[language][index].title)}
 				</Typography>
-				<ButtonCustom variant="contained" component={Link} to={data[index].link} type="rounded">
+				<ButtonCustom
+					variant="contained"
+					component={Link}
+					to={data[language][index].link}
+					type="rounded"
+				>
 					<Typography className={classes.buttonText} variant="subtitle1">
-						Iniciar Formación
+						{language === 'es' ? 'Iniciar Formación' : 'Sumak yachakuyta kallariy'}
 					</Typography>
 				</ButtonCustom>
 			</Box>

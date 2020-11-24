@@ -15,6 +15,7 @@ import {useDispatch} from 'react-redux';
 import ContainerRounded from './../components/ContainerRounded';
 import longArrow from '../assets/long-arrow.png';
 import {setSelected} from '../duck';
+import {useSelector} from 'react-redux';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -61,18 +62,39 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
-const data = [
-	'Me pareció que no era mi problema',
-	'Pensé que no cambiaría gran cosa',
-	'Nadie hizo nada',
-	'Sentí que era un tema cultural',
-	'No supe que hacer',
-	'Logré parar la agresión'
-];
+const data = {
+	es: {
+		title: '¿Cuál es tu caso?',
+		subtitle: 'Selecciona todas las opciones con las que te sientas identificado',
+		checkboxes: [
+			'Tuve miedo a empeorar las cosas',
+			'Me pareció que no era mi problema',
+			'Pensé que no cambiaría gran cosa',
+			'Nadie hizo nada',
+			'Sentí que era un tema cultural',
+			'No supe que hacer',
+			'Logré parar la agresión'
+		]
+	},
+	ki: {
+		title: '¿Maykanta kan kikin kawsashka?',
+		subtitle: '',
+		checkboxes: [
+			'Ashtawan llakichinata manllanayarka',
+			'Mana ñukapa phiñariy karkachu',
+			'Mana alliyachishachuta yuyaykani',
+			'Pipash mana imatapash rurarka',
+			'Paypa kawsaymanta phiñariy yuyaykani',
+			'Mana imatapash shinayta usharkani',
+			'Makanakuyta harkarkani'
+		]
+	}
+};
 
 const StopAbuseCases = () => {
 	const classes = useStyle();
 	const dispatch = useDispatch();
+	const {language} = useSelector((state) => state.data);
 
 	const [checked, setChecked] = useState([]);
 
@@ -94,9 +116,9 @@ const StopAbuseCases = () => {
 			<Grid className={classes.root} container direction="row" justify="space-between">
 				<Grid item xs={12}>
 					<Typography className={classes.text} variant="h5">
-						¿Cuál es tu caso?
+						{data[language].title}
 						<Typography className={classes.textBody} variant="subtitle2">
-							Selecciona todas las opciones con las que te sientas identificado
+							{data[language].subtitle}
 						</Typography>
 					</Typography>
 				</Grid>
@@ -104,7 +126,7 @@ const StopAbuseCases = () => {
 					<Box display="flex" justifyContent="center" alignItems="center">
 						<FormControl fullWidth component="fieldset" className={classes.formControl}>
 							<FormGroup>
-								{data.map((item, index) => {
+								{data[language].checkboxes.map((item, index) => {
 									return (
 										<FormControlLabel
 											key={index}

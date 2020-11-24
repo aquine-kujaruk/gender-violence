@@ -3,8 +3,9 @@ import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
 import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
 import ContainerRounded from '../components/ContainerRounded';
-import image5d from '../assets/big-5d.png';
 import longArrow from '../assets/long-arrow.png';
+import {useSelector} from 'react-redux';
+import * as parse from 'html-react-parser';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
@@ -38,15 +39,28 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
+const data = {
+	es: {
+		text1: parse('Te presentamos <br /> las'),
+		text2: 'Estas acciones pueden salvar una vida',
+		textButton: 'Quiero saber más'
+	},
+	ki: {
+		text1: parse('Willachita <br /> riksichinchik'),
+		text2: 'Kay ruraykuna kikinpa kawsayta kishpichinka',
+		textButton: 'Ashtawan yachanayan'
+	}
+};
+
 const Action5D = () => {
 	const classes = useStyle();
+	const {language} = useSelector((state) => state.data);
 
 	return (
 		<ContainerRounded noShadow topImage>
 			<Box height={1} position="relative">
 				<Typography className={classes.text} variant="h4">
-					Te presentamos <br />
-					las
+					{data[language].text1}
 				</Typography>
 				<Box
 					height="calc(80% - 24px)"
@@ -74,7 +88,7 @@ const Action5D = () => {
 						</Grid>
 						<Grid item xs={12}>
 							<Typography className={classes.text} variant="subtitle1">
-								Alguna vez has hecho algo para detenerlo?
+								{data[language].text2}
 							</Typography>
 						</Grid>
 						<Grid item xs={12}>
@@ -91,7 +105,7 @@ const Action5D = () => {
 										>
 											<Box display="flex" justifyContent="center">
 												<Typography className={classes.buttonText} variant="subtitle1">
-													Quiero saber más
+													{data[language].textButton}
 												</Typography>
 												<Box display="flex" alignItems="center">
 													<img alt="" className={classes.buttonImageIcon} src={longArrow} />
