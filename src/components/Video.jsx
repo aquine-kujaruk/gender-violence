@@ -1,6 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {makeStyles, Box, IconButton} from '@material-ui/core';
-import video from '../assets/video.mp4';
 import PlayArrowRoundedIcon from '@material-ui/icons/PlayArrowRounded';
 import PauseRoundedIcon from '@material-ui/icons/PauseRounded';
 import {useSelector, useDispatch} from 'react-redux';
@@ -73,7 +72,12 @@ const Video = () => {
 					<PlayArrowRoundedIcon fontSize="large" className={classes.iconButton} />
 				</IconButton>
 			</Box>
-			<video ref={vidRef} className={classes.video} src={video} />
+			<video
+				ref={vidRef}
+				className={classes.video}
+				src="https://s3.us-east-2.amazonaws.com/dev.atuntaqui.shop/videos/video.mp4
+"
+			/>
 		</Box>
 	);
 };
