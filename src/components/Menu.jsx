@@ -87,9 +87,6 @@ const Menu = () => {
 				>
 					<ListItemText primary="Mensajes" />
 				</ListItem>
-				<ListItem button color="inherit" onClick={() => dispatch(setMenuOpen)}>
-					<ListItemText primary="Estadísticas" />
-				</ListItem>
 				<ListItem
 					button
 					component={Link}

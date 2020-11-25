@@ -3,7 +3,7 @@ import {Box, Grid, makeStyles, Typography} from '@material-ui/core';
 import ButtonCustom from '../components/ButtonCustom';
 import {Link} from 'react-router-dom';
 import ContainerRounded from '../components/ContainerRounded';
-import headerImage from '../assets/1-2.png';
+import headerImage from '../assets/6-1.png';
 import {useSelector} from 'react-redux';
 import * as parse from 'html-react-parser';
 
@@ -66,7 +66,7 @@ const StopAbuse = () => {
 							<Typography className={classes.textBody} variant="body1">
 								{language === 'es'
 									? parse(
-											'No pasa absolutamente nada <br /> si no lo has hecho.<span className="primary-color">Sin presión.</span>'
+											'No pasa absolutamente nada <br /> si no lo has hecho. <span class="primary-color">Sin presión.</span>'
 									  )
 									: parse('Mana imapash kanchu na <br />  harkashka kashpa.')}
 							</Typography>

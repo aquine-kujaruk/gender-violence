@@ -43,11 +43,9 @@ const VictimInfoIntro = ({link = '/victima/info', width}) => {
 		<ContainerRounded>
 			<Grid className={classes.root} container direction="row" justify="space-between">
 				<Grid item xs={12}>
-					<Typography className={classes.text} variant="h5">
+					<Typography className={classes.text} variant={isWidthUp('sm', width) ? 'h5' : 'h6'}>
 						{language === 'es'
-							? isWidthUp('sm', width)
-								? parse('Lamentablemente ocurre todos los días, en todas partes')
-								: parse('Lamentable- <br /> mente ocurre todos los días, en todas partes')
+							? 'Lamentablemente ocurre todos los días, en todas partes'
 							: 'Llakipachami, tukuy punchakuna  maypi kashkpapashmi shina kan.'}
 					</Typography>
 				</Grid>

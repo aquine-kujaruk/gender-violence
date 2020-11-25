@@ -6,17 +6,17 @@ import Container from './../components/Container';
 import longArrow from '../assets/long-arrow-white.png';
 import Dots from './../components/Dots';
 import CustomSlide from './../components/CustomSlide';
-import imageHero from '../assets/3-1.jpg';
+import type1 from '../assets/type1.jpg';
+import type2 from '../assets/type2.jpg';
+import type3 from '../assets/type3.jpg';
+import type4 from '../assets/type4.jpg';
+import type5 from '../assets/type5.jpg';
 import {useSelector} from 'react-redux';
+import withWidth, {isWidthUp} from '@material-ui/core/withWidth';
 
 const useStyle = makeStyles((theme) => ({
 	root: {
 		height: '100%'
-	},
-	hero: {
-		background: `url(${imageHero})`,
-		backgroundSize: 'cover',
-		backgroundRepeat: 'no-repeat'
 	},
 	title: {
 		fontWeight: 'bold',
@@ -109,7 +109,9 @@ const data = {
 	]
 };
 
-const VictimInfo = ({link = '/victima/accion/intro'}) => {
+const images = [type1, type2, type3, type4, type5];
+
+const VictimInfo = ({link = '/victima/accion/intro', width}) => {
 	const classes = useStyle();
 	const {language} = useSelector((state) => state.data);
 	const [slider1Ref, slider2Ref] = [useRef(), useRef()];
@@ -125,7 +127,14 @@ const VictimInfo = ({link = '/victima/accion/intro'}) => {
 		<Container>
 			<Grid className={classes.root} container>
 				<Grid item xs={12}>
-					<Box height={0.55} width={1} position="relative" className={classes.hero}>
+					<Box
+						height={0.55}
+						width={1}
+						position="relative"
+						style={{
+							background: `url(${images[index]}) 0% 0% / cover no-repeat`
+						}}
+					>
 						<Box
 							position="absolute"
 							height="4.5rem"
@@ -152,7 +161,10 @@ const VictimInfo = ({link = '/victima/accion/intro'}) => {
 									<Typography className={`${classes.title} left`} variant="h6">
 										{data[language][index].titleLeft}
 									</Typography>
-									<Typography className={classes.title} variant="h3">
+									<Typography
+										className={classes.title}
+										variant={isWidthUp('sm', width) ? 'h3' : 'h4'}
+									>
 										{data[language][index].titleRight}
 									</Typography>
 								</Box>
@@ -231,4 +243,4 @@ const VictimInfo = ({link = '/victima/accion/intro'}) => {
 	);
 };
 
-export default VictimInfo;
+export default withWidth()(VictimInfo);

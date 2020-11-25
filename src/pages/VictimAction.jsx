@@ -1,4 +1,4 @@
-import React, {Fragment, useRef} from 'react';
+import React, {Fragment, useEffect, useRef} from 'react';
 import {Box, Button, Grid, makeStyles, Typography} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import * as parse from 'html-react-parser';
@@ -77,9 +77,25 @@ const useStyle = makeStyles((theme) => ({
 	}
 }));
 
+const useClientRect = () => {
+	const [rect, setRect] = React.useState(null);
+	const ref = React.useCallback((node) => {
+		if (node !== null) {
+			setRect(node.getBoundingClientRect());
+		}
+	}, []);
+	return [rect, ref];
+};
+
 const Content = (props) => {
 	const {onNext, bodyHeight, imageWidth, imageHeight, inverted, isLast, fullHeight, info} = props;
 	const classes = useStyle();
+	const [rect, ref] = useClientRect();
+
+	useEffect(() => {
+		console.log(rect?.height);
+	}, [rect]);
+
 	return (
 		<Fragment>
 			<Box height={bodyHeight} width={1} position="relative">
@@ -106,7 +122,9 @@ const Content = (props) => {
 						alignItems="center"
 						position="relative"
 					>
-						<Typography variant="body1">{parse(info.text)}</Typography>
+						<Typography ref={ref} variant="body1" style={{fontSize: '0.8rem'}}>
+							{parse(info.text)}
+						</Typography>
 					</Box>
 				</Box>
 				<Box
@@ -247,14 +265,22 @@ const VictimAction = () => {
 								justify="space-between"
 							>
 								<Grid item xs={12}>
-									<Typography className={classes.title} variant="h5">
+									<Typography
+										className={classes.title}
+										variant="h5"
+										style={{fontSize: '1.3rem', lineHeight: 1.2}}
+									>
 										{language === 'es'
 											? parse('Si no te hace bien <br /> ¡Reacciona!')
 											: parse('Kanta mana alliyachikpika <br /> ¡Rikchariy!')}
 									</Typography>
 								</Grid>
 								<Grid xs={12} item>
-									<Typography className={classes.subtitle} variant="body1">
+									<Typography
+										className={classes.subtitle}
+										variant="body1"
+										style={{fontSize: '0.8rem'}}
+									>
 										{language === 'es'
 											? parse(
 													'En caso de algun tipo de violencia esto <br /> es lo que puedes hacer'

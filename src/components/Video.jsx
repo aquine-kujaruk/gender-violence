@@ -35,7 +35,7 @@ const Video = () => {
 	const vidRef = useRef(null);
 
 	const dispatch = useDispatch();
-	const {playVideo} = useSelector((state) => state.data);
+	const {playVideo, isWide} = useSelector((state) => state.data);
 
 	useEffect(() => {
 		if (playVideo) vidRef.current.play();
@@ -45,7 +45,7 @@ const Video = () => {
 	return (
 		<Box>
 			<Box
-				zIndex="tooltip"
+				style={{zIndex: isWide ? 1 : 1500}}
 				display="flex"
 				justifyContent="center"
 				alignItems="center"

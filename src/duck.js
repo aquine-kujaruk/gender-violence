@@ -14,7 +14,8 @@ const initialData = {
 	language: 'es',
 	menuOpen: false,
 	loader: false,
-	playVideo: false
+	playVideo: false,
+	isWide: false
 };
 
 const SET_SELECTED = 'SET_SELECTED';
@@ -25,6 +26,7 @@ const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 const MENU_OPEN = 'MENU_OPEN';
 const SET_LOADER = 'SET_LOADER';
 const PLAY_VIDEO = 'PLAY_VIDEO';
+const IS_WIDE = 'IS_WIDE';
 
 export default function reducer(state = initialData, action) {
 	switch (action.type) {
@@ -44,6 +46,8 @@ export default function reducer(state = initialData, action) {
 			return {...state, loader: action.payload};
 		case PLAY_VIDEO:
 			return {...state, playVideo: action.payload};
+		case IS_WIDE:
+			return {...state, isWide: action.payload};
 		default:
 			return state;
 	}
@@ -116,5 +120,11 @@ export const setLoader = (status) => (dispatch) =>
 export const setPlayVideo = (status) => (dispatch) =>
 	dispatch({
 		type: PLAY_VIDEO,
+		payload: status
+	});
+
+export const setIsWide = (status) => (dispatch) =>
+	dispatch({
+		type: IS_WIDE,
 		payload: status
 	});

@@ -9,10 +9,10 @@ import {setPlayVideo} from './../duck';
 
 const Home = () => {
 	const dispatch = useDispatch();
-	const onNext = () => dispatch(setPlayVideo(false));
+	const changeNext = () => dispatch(setPlayVideo(false));
 
 	return (
-		<VerticalSlider onNext={onNext} blockedUp={[1]}>
+		<VerticalSlider changeNext={changeNext} blockedUp={[1]}>
 			<Grid container>
 				<Grid item>
 					<Video />

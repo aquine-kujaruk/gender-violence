@@ -63,7 +63,8 @@ const Apply = () => {
 	const classes = useStyle();
 	const outlinedInputClasses = useOutlinedInputStyles();
 	const dispatch = useDispatch();
-	const {user} = useSelector((state) => state.data);
+
+	const {user, language} = useSelector((state) => state.data);
 
 	const [name, setName] = useState(user.name);
 	const [age, setAge] = useState(user.age);
@@ -85,12 +86,31 @@ const Apply = () => {
 	const disabled =
 		name === '' || age === '' || sex === '' || setSex === '' || !checkEmail(email) || sector === '';
 
+	const data = {
+		es: {
+			title: 'Solicita aquí tu certificado de formación',
+			form1: 'Nombre',
+			form2: 'Edad',
+			form3: 'Sexo',
+			form4: 'Email',
+			form5: 'Parroquia'
+		},
+		ki: {
+			title: 'Kikin yachakushka phankata kaypi mañapay ',
+			form1: 'Shuti',
+			form2: 'Wata',
+			form3: 'Sexo',
+			form4: 'Antanikik chaski',
+			form5: 'Kitilli'
+		}
+	};
+
 	return (
 		<Container backgroundColor="white">
 			<Grid className={classes.root} container direction="row" justify="space-between">
 				<Grid item xs={12}>
 					<Typography className={classes.text} variant="h6">
-						Solicita aquí tu certificado de formación
+						{data[language].title}
 					</Typography>
 				</Grid>
 				<Grid item xs={12}>
@@ -98,7 +118,7 @@ const Apply = () => {
 				</Grid>
 				<Grid item xs={12}>
 					<Typography className={classes.text} variant="h6">
-						Nombre
+						{data[language].form1}
 					</Typography>
 					<TextField
 						InputProps={{
@@ -114,7 +134,7 @@ const Apply = () => {
 				</Grid>
 				<Grid item xs={6}>
 					<Typography className={classes.text} variant="h6">
-						Edad
+						{data[language].form2}
 					</Typography>
 					<TextField
 						type="number"
@@ -131,7 +151,7 @@ const Apply = () => {
 				</Grid>
 				<Grid item xs={6}>
 					<Typography className={classes.text} variant="h6">
-						Sexo
+						{data[language].form3}
 					</Typography>
 					<Select
 						input={<OutlinedInput classes={outlinedInputClasses} />}
@@ -146,7 +166,7 @@ const Apply = () => {
 				</Grid>
 				<Grid item xs={12}>
 					<Typography className={classes.text} variant="h6">
-						Email
+						{data[language].form4}
 					</Typography>
 					<TextField
 						InputProps={{
@@ -162,7 +182,7 @@ const Apply = () => {
 				</Grid>
 				<Grid item xs={12}>
 					<Typography className={classes.text} variant="h6">
-						Parroquia
+						{data[language].form5}
 					</Typography>
 					<TextField
 						InputProps={{

@@ -1,13 +1,26 @@
 import React from 'react';
-import {Box, makeStyles, Typography, List, ListItem, ListItemText} from '@material-ui/core';
+import {
+	Box,
+	makeStyles,
+	Typography,
+	List,
+	ListItem,
+	ListItemText,
+	ListItemIcon
+} from '@material-ui/core';
 import ContainerRounded from '../components/ContainerRounded';
+import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
 
 const useStyle = makeStyles((theme) => ({
 	list: {
 		width: '100%',
 		maxWidth: 360,
-		'& *': {
+		'& .MuiListItemText-primary': {
+			fontWeight: 'bold',
 			color: theme.palette.primary.main
+		},
+		'& .MuiListItemText-secondary': {
+			fontSize: '1.3rem'
 		}
 	},
 	text: {
@@ -15,6 +28,9 @@ const useStyle = makeStyles((theme) => ({
 		textAlign: 'center',
 		color: '#ff5f2b',
 		padding: '0 16px'
+	},
+	icon: {
+		color: theme.palette.primary.main
 	}
 }));
 
@@ -35,21 +51,42 @@ const Emergency = () => {
 					borderRadius={24}
 					my="16px"
 				>
-					<Box display="flex" justifyContent="center" alignItems="center">
+					<Box style={{overflow: 'scroll'}}>
 						<List className={classes.list}>
 							<ListItem>
-								<ListItemText primary="Policía Nacional" secondary="+593-98-400-3182" />
+								<ListItemIcon>
+									<PhoneInTalkIcon className={classes.icon} />
+								</ListItemIcon>
+								<ListItemText primary="EMERGENCIAS ECU911" secondary="911" />
 							</ListItem>
 							<ListItem>
-								<ListItemText primary="Comisaría Nacional" secondary="+593-98-400-3182" />
+								<ListItemIcon>
+									<PhoneInTalkIcon className={classes.icon} />
+								</ListItemIcon>
+								<ListItemText primary="POLICÍA NACIONAL ANTONIO ANTE" secondary="062 906 101" />
 							</ListItem>
 							<ListItem>
-								<ListItemText primary="Cuerpo de Bomberos" secondary="+593-98-400-3182" />
+								<ListItemIcon>
+									<PhoneInTalkIcon className={classes.icon} />
+								</ListItemIcon>
+								<ListItemText primary="CUERPO DE BOMBEROS ANTONIO ANTE" secondary="062906102" />
 							</ListItem>
 							<ListItem>
+								<ListItemIcon>
+									<PhoneInTalkIcon className={classes.icon} />
+								</ListItemIcon>
 								<ListItemText
-									primary="Consejo Cantonal de Protección de Derechos"
-									secondary="+593-98-400-3182"
+									primary="JUNTA CANTONAL DE PROTECCIÓN DE DERECHOS DE ANTONIO ANTE"
+									secondary="062 908 266 EXT 146"
+								/>
+							</ListItem>
+							<ListItem>
+								<ListItemIcon>
+									<PhoneInTalkIcon />
+								</ListItemIcon>
+								<ListItemText
+									primary="CONSEJO CANTONAL DE PROTECCIÓN DE DERECHOS DE ANTONIO ANTE"
+									secondary="062908 266"
 								/>
 							</ListItem>
 						</List>

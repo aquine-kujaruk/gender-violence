@@ -31,6 +31,7 @@ import Messages from './pages/Messages';
 import Emergency from './pages/Emergency';
 import generateStore from './store';
 import Loader from './components/Loader';
+import Warning from './components/Warning';
 
 function App() {
 	const store = generateStore();
@@ -42,6 +43,7 @@ function App() {
 					<Navbar />
 					<Menu />
 					<Loader />
+					<Warning />
 					<Switch>
 						<Route exact path="/numeros-emergencia">
 							<Emergency />

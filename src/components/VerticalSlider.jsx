@@ -2,7 +2,7 @@ import React, {forwardRef, useImperativeHandle, useState} from 'react';
 import ReactPageScroller from 'react-page-scroller';
 
 const VerticalSlider = forwardRef((props, ref) => {
-	const {children} = props;
+	const {children, changeNext = () => {}} = props;
 	const blockedUp = props.blockedUp || [];
 	const blockedDown = props.blockedDown || [];
 
@@ -25,7 +25,7 @@ const VerticalSlider = forwardRef((props, ref) => {
 		if (blockedDown.includes(number)) setBlockScrollDown(true);
 		else setBlockScrollDown(false);
 
-		props.onNext();
+		changeNext();
 	};
 
 	return (
