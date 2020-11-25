@@ -74,7 +74,7 @@ const Menu = () => {
 					component={Link}
 					to={'/'}
 					color="inherit"
-					onClick={() => dispatch(setMenuOpen)}
+					onClick={() => dispatch(setMenuOpen(false))}
 				>
 					<ListItemText primary="Inicio" />
 				</ListItem>
@@ -83,7 +83,7 @@ const Menu = () => {
 					component={Link}
 					to={'/mensajes'}
 					color="inherit"
-					onClick={() => dispatch(setMenuOpen)}
+					onClick={() => dispatch(setMenuOpen(false))}
 				>
 					<ListItemText primary="Mensajes" />
 				</ListItem>
@@ -92,7 +92,7 @@ const Menu = () => {
 					component={Link}
 					to={'/numeros-emergencia'}
 					color="inherit"
-					onClick={() => dispatch(setMenuOpen)}
+					onClick={() => dispatch(setMenuOpen(false))}
 				>
 					<ListItemText primary="Números de emergencia" />
 				</ListItem>
@@ -103,7 +103,10 @@ const Menu = () => {
 				<ListItem
 					button
 					style={{paddingLeft: 64}}
-					onClick={() => dispatch(setChangeLanguage('es'))}
+					onClick={() => {
+						dispatch(setMenuOpen(false));
+						dispatch(setChangeLanguage('es'));
+					}}
 				>
 					<ListItemIcon style={{minWidth: 0}}>
 						<Radio color="primary" edge="start" checked={language === 'es'} />
@@ -116,7 +119,10 @@ const Menu = () => {
 				<ListItem
 					button
 					style={{paddingLeft: 64}}
-					onClick={() => dispatch(setChangeLanguage('ki'))}
+					onClick={() => {
+						dispatch(setMenuOpen(false));
+						dispatch(setChangeLanguage('ki'));
+					}}
 				>
 					<ListItemIcon style={{minWidth: 0}}>
 						<Radio color="primary" edge="start" checked={language === 'ki'} />
