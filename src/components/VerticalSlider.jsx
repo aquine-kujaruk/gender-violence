@@ -24,6 +24,8 @@ const VerticalSlider = forwardRef((props, ref) => {
 
 		if (blockedDown.includes(number)) setBlockScrollDown(true);
 		else setBlockScrollDown(false);
+
+		props.onNext();
 	};
 
 	return (

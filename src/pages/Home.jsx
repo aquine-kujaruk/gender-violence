@@ -4,10 +4,15 @@ import {Grid} from '@material-ui/core';
 import Video from './../components/Video';
 import FooterHome from '../components/FooterHome';
 import FlowMain from './FlowMain';
+import {useDispatch} from 'react-redux';
+import {setPlayVideo} from './../duck';
 
 const Home = () => {
+	const dispatch = useDispatch();
+	const onNext = () => dispatch(setPlayVideo(false));
+
 	return (
-		<VerticalSlider blockedUp={[1]}>
+		<VerticalSlider onNext={onNext} blockedUp={[1]}>
 			<Grid container>
 				<Grid item>
 					<Video />

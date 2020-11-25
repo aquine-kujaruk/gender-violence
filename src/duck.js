@@ -13,7 +13,8 @@ const initialData = {
 	},
 	language: 'es',
 	menuOpen: false,
-	loader: false
+	loader: false,
+	playVideo: false
 };
 
 const SET_SELECTED = 'SET_SELECTED';
@@ -23,6 +24,7 @@ const UPDATE_USER = 'UPDATE_USER';
 const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 const MENU_OPEN = 'MENU_OPEN';
 const SET_LOADER = 'SET_LOADER';
+const PLAY_VIDEO = 'PLAY_VIDEO';
 
 export default function reducer(state = initialData, action) {
 	switch (action.type) {
@@ -40,6 +42,8 @@ export default function reducer(state = initialData, action) {
 			return {...state, menuOpen: action.payload};
 		case SET_LOADER:
 			return {...state, loader: action.payload};
+		case PLAY_VIDEO:
+			return {...state, playVideo: action.payload};
 		default:
 			return state;
 	}
@@ -106,5 +110,11 @@ export const setMenuOpen = (status) => (dispatch) =>
 export const setLoader = (status) => (dispatch) =>
 	dispatch({
 		type: SET_LOADER,
+		payload: status
+	});
+
+export const setPlayVideo = (status) => (dispatch) =>
+	dispatch({
+		type: PLAY_VIDEO,
 		payload: status
 	});
