@@ -32,6 +32,8 @@ import Emergency from './pages/Emergency';
 import generateStore from './store';
 import Loader from './components/Loader';
 import Warning from './components/Warning';
+import Elderly from './pages/Elderly';
+import Disability from './pages/Disability';
 
 function App() {
 	const store = generateStore();
@@ -113,6 +115,12 @@ function App() {
 						</Route>
 						<Route exact path="/victima">
 							<Victim />
+						</Route>
+						<Route exact path="/adulto-mayor">
+							<Elderly />
+						</Route>
+						<Route exact path="/discapacidad">
+							<Disability />
 						</Route>
 						<Route exact path="/">
 							<Home />

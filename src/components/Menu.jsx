@@ -96,6 +96,24 @@ const Menu = () => {
 				>
 					<ListItemText primary="Números de emergencia" />
 				</ListItem>
+				<ListItem
+					button
+					component={Link}
+					to={'/adulto-mayor'}
+					color="inherit"
+					onClick={() => dispatch(setMenuOpen(false))}
+				>
+					<ListItemText primary="Adulto Mayor" />
+				</ListItem>
+				<ListItem
+					button
+					component={Link}
+					to={'/discapacidad'}
+					color="inherit"
+					onClick={() => dispatch(setMenuOpen(false))}
+				>
+					<ListItemText primary="Discapacidad" />
+				</ListItem>
 				<Divider className={classes.divider} />
 				<ListItem color="inherit">
 					<ListItemText primary="Idioma" />
